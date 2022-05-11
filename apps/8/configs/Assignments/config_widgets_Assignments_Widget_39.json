@@ -1,0 +1,37 @@
+{
+  "categories": [
+    {
+      "label": "Project Date",
+      "field": "project_date",
+      "direction": "D"
+    },
+    {
+      "label": "Program Name",
+      "field": "rtss_program_name",
+      "direction": "A"
+    },
+    {
+      "label": "Test Officer",
+      "field": "rtss_test_officer",
+      "direction": "A"
+    },
+    {
+      "label": "Surveyor Name",
+      "field": "surveyor",
+      "direction": "A"
+    }
+  ],
+  "refreshLayers": [
+    "Assignments by Surveyor",
+    "Assignments by Status",
+    "Assignments"
+  ],
+  "assignmentBySurveyorName": "Assignments by Surveyor",
+  "assignmentLayer": "https://gisprep.yuma.army.mil/ags/rest/services/Surveys/range_surveys/FeatureServer/5",
+  "siteLayer": "https://gisprep.yuma.army.mil/ags/rest/services/Surveys/range_surveys/FeatureServer/6",
+  "geoprocessing": {
+    "uploadUrl": "https://gisprep.yuma.army.mil/ags/rest/services/Surveys/importdata/GPServer/uploads/upload",
+    "gpsToolUrl": "https://gisprep.yuma.army.mil/ags/rest/services/Surveys/importdata/GPServer/Import%20GPS%20Excel%20File",
+    "tsToolUrl": "https://gisprep.yuma.army.mil/ags/rest/services/Surveys/importdata/GPServer/Import%20Total%20Station%20File"
+  }
+}

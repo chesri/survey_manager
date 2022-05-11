@@ -1,0 +1,16 @@
+{
+  "name": "Assignments",
+  "2D": true,
+  "3D": false,
+  "platform": "HTML",
+  "version": "2.12",
+  "wabVersion": "2.12",
+  "author": "Esri Defense Services CLT",
+  "description": "This widget allows a user to create and modify assignments",
+  "copyright": "",
+  "license": "http://www.apache.org/licenses/LICENSE-2.0",
+  "properties": {
+		"inPanel":true,
+		"hasConfig":true
+  }
+}

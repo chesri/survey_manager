@@ -1,0 +1,66 @@
+{
+  "allPlaceholder": "Search Assignments & Surveys",
+  "showInfoWindowOnSelect": true,
+  "sources": [
+    {
+      "layerId": "a3293e3fb7644b4c853a03ef4e8b1990",
+      "url": "https://gisprep.yuma.army.mil/ags/rest/services/Surveys/range_surveys/FeatureServer/6",
+      "name": "Test Sites",
+      "placeholder": "",
+      "searchFields": [],
+      "displayField": "Site",
+      "exactMatch": false,
+      "searchInCurrentMapExtent": false,
+      "panToScale": false,
+      "zoomScale": null,
+      "maxSuggestions": 6,
+      "maxResults": 6,
+      "type": "query"
+    },
+    {
+      "layerId": "a3293e3fb7644b4c853a03ef4e8b1990",
+      "url": "https://gisprep.yuma.army.mil/ags/rest/services/Surveys/range_surveys/FeatureServer/6",
+      "name": "Test Sites",
+      "placeholder": "",
+      "searchFields": [],
+      "displayField": "Site",
+      "exactMatch": false,
+      "searchInCurrentMapExtent": false,
+      "panToScale": false,
+      "zoomScale": null,
+      "maxSuggestions": 6,
+      "maxResults": 6,
+      "type": "query"
+    },
+    {
+      "layerId": "5900803448f7453ba0ce48a477571d10",
+      "url": "https://gisprep.yuma.army.mil/ags/rest/services/Surveys/range_surveys/FeatureServer/5",
+      "name": "Assignments",
+      "placeholder": "",
+      "searchFields": [],
+      "displayField": "rtss_program_name",
+      "exactMatch": false,
+      "searchInCurrentMapExtent": false,
+      "panToScale": false,
+      "zoomScale": null,
+      "maxSuggestions": 6,
+      "maxResults": 6,
+      "type": "query"
+    },
+    {
+      "layerId": "b5fc004dacd5435f8807e589bd6f9701",
+      "url": "Https://gisprep.yuma.army.mil/ags/rest/services/Surveys/range_surveys/FeatureServer/0",
+      "name": "Surveys",
+      "placeholder": "",
+      "searchFields": [],
+      "displayField": "name",
+      "exactMatch": false,
+      "searchInCurrentMapExtent": false,
+      "panToScale": false,
+      "zoomScale": null,
+      "maxSuggestions": 6,
+      "maxResults": 6,
+      "type": "query"
+    }
+  ]
+}

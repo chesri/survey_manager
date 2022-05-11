@@ -1,0 +1,135 @@
+{
+  "taskOper": "OR",
+  "groupByLayer": false,
+  "zoomto": false,
+  "allowCustom": false,
+  "filters": [
+    {
+      "layerId": "da48f5c1e727422cb68c7c0e85816845",
+      "url": "https://gisprep.yuma.army.mil/ags/rest/services/Surveys/range_surveys/FeatureServer/5",
+      "name": "Assignments by Surveyor",
+      "filter": {
+        "logicalOperator": "AND",
+        "parts": [
+          {
+            "fieldObj": {
+              "name": "surveyor",
+              "label": "surveyor",
+              "dateFormat": "",
+              "shortType": "string",
+              "type": "esriFieldTypeString"
+            },
+            "operator": "stringOperatorIs",
+            "valueObj": {
+              "isValid": true,
+              "type": "unique",
+              "value": ""
+            },
+            "interactiveObj": {
+              "prompt": "Surveyor is",
+              "hint": "",
+              "cascade": "previous"
+            },
+            "caseSensitive": false
+          },
+          {
+            "fieldObj": {
+              "name": "rtss_program_name",
+              "label": "rtss_program_name",
+              "dateFormat": "",
+              "shortType": "string",
+              "type": "esriFieldTypeString"
+            },
+            "operator": "stringOperatorIs",
+            "valueObj": {
+              "isValid": true,
+              "type": "unique",
+              "value": ""
+            },
+            "interactiveObj": {
+              "prompt": "Program Name is",
+              "hint": "",
+              "cascade": "previous"
+            },
+            "caseSensitive": false
+          },
+          {
+            "fieldObj": {
+              "name": "rtss_test_officer",
+              "label": "rtss_test_officer",
+              "dateFormat": "",
+              "shortType": "string",
+              "type": "esriFieldTypeString"
+            },
+            "operator": "stringOperatorIs",
+            "valueObj": {
+              "isValid": true,
+              "type": "unique",
+              "value": ""
+            },
+            "interactiveObj": {
+              "prompt": "Test Officer is",
+              "hint": "",
+              "cascade": "previous"
+            },
+            "caseSensitive": false
+          },
+          {
+            "fieldObj": {
+              "name": "status",
+              "label": "status",
+              "dateFormat": "",
+              "shortType": "string",
+              "type": "esriFieldTypeString"
+            },
+            "operator": "stringOperatorIs",
+            "valueObj": {
+              "isValid": true,
+              "type": "unique",
+              "value": ""
+            },
+            "interactiveObj": {
+              "prompt": "Assignment Status is",
+              "hint": "",
+              "cascade": "previous"
+            },
+            "caseSensitive": false
+          }
+        ],
+        "expr": "",
+        "displaySQL": ""
+      },
+      "icon": null,
+      "enableMapFilter": true,
+      "autoApplyWhenWidgetOpen": false,
+      "collapse": false,
+      "dateField_begin": "survey_begin",
+      "dateField_end": "survey_end",
+      "symbol": {
+        "color": [
+          0,
+          0,
+          128,
+          128
+        ],
+        "size": 18,
+        "angle": 0,
+        "xoffset": 0,
+        "yoffset": 0,
+        "type": "esriSMS",
+        "style": "esriSMSCircle",
+        "outline": {
+          "color": [
+            0,
+            0,
+            128,
+            255
+          ],
+          "width": 0.75,
+          "type": "esriSLS",
+          "style": "esriSLSSolid"
+        }
+      }
+    }
+  ]
+}

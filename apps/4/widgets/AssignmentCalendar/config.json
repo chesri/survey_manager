@@ -1,0 +1,18 @@
+{
+  "assignmentsUrl": "https://cmcguirevm.esri.com/server/rest/services/survey/survey/MapServer/5",
+  "fields": {
+    "surveyor": "surveyor",
+    "surveyBegin": "survey_begin",
+    "surveyEnd": "survey_end",
+    "assignedDate": "assigned_date",
+    "projectDate": "project_date",
+    "status": "status",
+    "location": "rtss_location",
+    "locationNotes": "location_notes",
+    "programName": "rtss_program_name",
+    "testOfficer": "rtss_test_officer",
+    "testOfficerPhone": "rtss_test_officer_phone",
+    "adss": "rtss_adss",
+    "wbs": "rtss_wbs_no"
+  }
+}

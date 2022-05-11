@@ -1,0 +1,56 @@
+{
+  "name": "deletesurveydata",
+  "displayName": "Delete Survey Data",
+  "description": "Deletes project, station(s), points, and lines added for a project.",
+  "category": "",
+  "helpUrl": "https://gisprep.yuma.army.mil/ags/rest/directories/arcgisoutput/Surveys/range_surveys/deletesurveydata_GPServer/survey_deletesurveydata/deletesurveydata.htm",
+  "_ssl": true,
+  "serverInfo": {
+    "currentVersion": 10.91,
+    "url": "https://gisprep.yuma.army.mil/ags/rest/services/Surveys/range_surveys/deletesurveydata/GPServer",
+    "hasResultMapServer": false,
+    "resultMapServerName": "",
+    "supportsUpload": false
+  },
+  "useResultMapServer": false,
+  "taskUrl": "https://gisprep.yuma.army.mil/ags/rest/services/Surveys/range_surveys/deletesurveydata/GPServer/Delete%20Survey%20Data",
+  "isSynchronous": false,
+  "inputParams": [
+    {
+      "name": "Survey_ID__survey_uid__to_DELETE_",
+      "dataType": "GPString",
+      "description": "Removes survey data using the survey_uid.",
+      "defaultValue": null,
+      "category": "",
+      "label": "Survey ID (survey_uid) to DELETE!",
+      "visible": true,
+      "required": true,
+      "tooltip": "Survey ID (survey_uid) to DELETE!"
+    },
+    {
+      "name": "CONFIRM__This_will_delete_stations__survey_points__and_survey_lines_",
+      "dataType": "GPBoolean",
+      "description": "Check box to confirm you want to DELETE records.",
+      "defaultValue": false,
+      "category": "",
+      "label": "CONFIRM. This will delete stations, survey points, and survey lines.",
+      "visible": true,
+      "required": false
+    }
+  ],
+  "outputParams": [
+    {
+      "name": "Return_Message",
+      "dataType": "GPString",
+      "description": "",
+      "defaultValue": "",
+      "category": "",
+      "label": "Return Message",
+      "visible": true,
+      "required": false
+    }
+  ],
+  "shareResults": false,
+  "layerOrder": [],
+  "showExportButton": false
+}

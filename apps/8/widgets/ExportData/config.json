@@ -1,0 +1,8 @@
+{
+  "surveyIdField": "survey_uid",
+  "surveyMapService": "https://cmcguirevm.esri.com/server/rest/services/yuma_survey/MapServer",
+  "surveyLayerId": "5",
+  "filterSurveysByField": "name",
+  "writeSurveyDataToExcelUrl": "https://cmcguirevm.esri.com/server/rest/services/exportsurveydata/GPServer/Export%20Survey%20to%20Excel",
+  "exportWebMapTaskUrl": "https://cmcguirevm.esri.com/server/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task"
+}

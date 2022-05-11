@@ -1,0 +1,1444 @@
+{
+  "layerInfos": [
+    {
+      "name": "Assignments by Surveyor",
+      "id": "2d936b0050484b93a3848d2096d154e0",
+      "layer": {
+        "url": "https://gisprep.yuma.army.mil/ags/rest/services/Surveys/range_surveys/FeatureServer/5",
+        "fields": [
+          {
+            "name": "OBJECTID",
+            "alias": "OBJECTID",
+            "show": true,
+            "format": {
+              "places": 0,
+              "digitSeparator": false
+            }
+          },
+          {
+            "name": "assignment_uid",
+            "alias": "AssignmentID",
+            "show": true,
+            "format": {
+              "places": 0,
+              "digitSeparator": false
+            }
+          },
+          {
+            "name": "project_date",
+            "alias": "Project Date",
+            "show": true
+          },
+          {
+            "name": "rtss_location",
+            "alias": "RTSS Location",
+            "show": true
+          },
+          {
+            "name": "location_notes",
+            "alias": "Location Notes",
+            "show": true
+          },
+          {
+            "name": "rtss_program_name",
+            "alias": "RTSS Program Name",
+            "show": true
+          },
+          {
+            "name": "rtss_test_officer",
+            "alias": "RTSS Test Officer",
+            "show": true
+          },
+          {
+            "name": "rtss_test_officer_phone",
+            "alias": "RTSS Test Officer Phone",
+            "show": true
+          },
+          {
+            "name": "rtss_adss",
+            "alias": "ADSS",
+            "show": true
+          },
+          {
+            "name": "rtss_wbs_no",
+            "alias": "WBS#",
+            "show": true
+          },
+          {
+            "name": "priority",
+            "alias": "Priority",
+            "show": true
+          },
+          {
+            "name": "survey_begin",
+            "alias": "Begin Date",
+            "show": true
+          },
+          {
+            "name": "survey_end",
+            "alias": "End Date",
+            "show": true
+          },
+          {
+            "name": "status",
+            "alias": "Status",
+            "show": true
+          },
+          {
+            "name": "status_date",
+            "alias": "Status set Date",
+            "show": true
+          },
+          {
+            "name": "status_notes",
+            "alias": "Status Notes",
+            "show": true
+          },
+          {
+            "name": "surveyor",
+            "alias": "Technician",
+            "show": true
+          },
+          {
+            "name": "surveyor_notes",
+            "alias": "Surveyor Notes",
+            "show": true
+          },
+          {
+            "name": "assigned_date",
+            "alias": "Assigned on Date",
+            "show": true
+          },
+          {
+            "name": "creator",
+            "alias": "creator",
+            "show": true
+          },
+          {
+            "name": "created",
+            "alias": "created",
+            "show": true
+          },
+          {
+            "name": "editor",
+            "alias": "editor",
+            "show": true
+          },
+          {
+            "name": "edited",
+            "alias": "edited",
+            "show": true
+          }
+        ]
+      },
+      "show": null,
+      "showAttachments": false,
+      "sortField": "OBJECTID",
+      "isDescending": false
+    },
+    {
+      "name": "Assignments by Status",
+      "id": "4b9cd406304c4d3288792f1d92c72a7e",
+      "layer": {
+        "url": "https://gisprep.yuma.army.mil/ags/rest/services/Surveys/range_surveys/FeatureServer/5",
+        "fields": [
+          {
+            "name": "OBJECTID",
+            "alias": "OBJECTID",
+            "show": true,
+            "format": {
+              "places": 0,
+              "digitSeparator": false
+            }
+          },
+          {
+            "name": "assignment_uid",
+            "alias": "AssignmentID",
+            "show": true,
+            "format": {
+              "places": 0,
+              "digitSeparator": false
+            }
+          },
+          {
+            "name": "project_date",
+            "alias": "Project Date",
+            "show": true
+          },
+          {
+            "name": "rtss_location",
+            "alias": "RTSS Location",
+            "show": true
+          },
+          {
+            "name": "location_notes",
+            "alias": "Location Notes",
+            "show": true
+          },
+          {
+            "name": "rtss_program_name",
+            "alias": "RTSS Program Name",
+            "show": true
+          },
+          {
+            "name": "rtss_test_officer",
+            "alias": "RTSS Test Officer",
+            "show": true
+          },
+          {
+            "name": "rtss_test_officer_phone",
+            "alias": "RTSS Test Officer Phone",
+            "show": true
+          },
+          {
+            "name": "rtss_adss",
+            "alias": "ADSS",
+            "show": true
+          },
+          {
+            "name": "rtss_wbs_no",
+            "alias": "WBS#",
+            "show": true
+          },
+          {
+            "name": "priority",
+            "alias": "Priority",
+            "show": true
+          },
+          {
+            "name": "survey_begin",
+            "alias": "Begin Date",
+            "show": true
+          },
+          {
+            "name": "survey_end",
+            "alias": "End Date",
+            "show": true
+          },
+          {
+            "name": "status",
+            "alias": "Status",
+            "show": true
+          },
+          {
+            "name": "status_date",
+            "alias": "Status set Date",
+            "show": true
+          },
+          {
+            "name": "status_notes",
+            "alias": "Status Notes",
+            "show": true
+          },
+          {
+            "name": "surveyor",
+            "alias": "Technician",
+            "show": true
+          },
+          {
+            "name": "surveyor_notes",
+            "alias": "Surveyor Notes",
+            "show": true
+          },
+          {
+            "name": "assigned_date",
+            "alias": "Assigned on Date",
+            "show": true
+          },
+          {
+            "name": "creator",
+            "alias": "creator",
+            "show": true
+          },
+          {
+            "name": "created",
+            "alias": "created",
+            "show": true
+          },
+          {
+            "name": "editor",
+            "alias": "editor",
+            "show": true
+          },
+          {
+            "name": "edited",
+            "alias": "edited",
+            "show": true
+          }
+        ]
+      },
+      "show": null,
+      "showAttachments": false,
+      "sortField": "OBJECTID",
+      "isDescending": false
+    },
+    {
+      "name": "Assignments",
+      "id": "5900803448f7453ba0ce48a477571d10",
+      "layer": {
+        "url": "https://gisprep.yuma.army.mil/ags/rest/services/Surveys/range_surveys/FeatureServer/5",
+        "fields": [
+          {
+            "name": "OBJECTID",
+            "alias": "OBJECTID",
+            "show": true,
+            "format": {
+              "places": 0,
+              "digitSeparator": false
+            }
+          },
+          {
+            "name": "assignment_uid",
+            "alias": "AssignmentID",
+            "show": true,
+            "format": {
+              "places": 0,
+              "digitSeparator": false
+            }
+          },
+          {
+            "name": "project_date",
+            "alias": "Project Date",
+            "show": true
+          },
+          {
+            "name": "rtss_location",
+            "alias": "RTSS Location",
+            "show": true
+          },
+          {
+            "name": "location_notes",
+            "alias": "Location Notes",
+            "show": true
+          },
+          {
+            "name": "rtss_program_name",
+            "alias": "RTSS Program Name",
+            "show": true
+          },
+          {
+            "name": "rtss_test_officer",
+            "alias": "RTSS Test Officer",
+            "show": true
+          },
+          {
+            "name": "rtss_test_officer_phone",
+            "alias": "RTSS Test Officer Phone",
+            "show": true
+          },
+          {
+            "name": "rtss_adss",
+            "alias": "ADSS",
+            "show": true
+          },
+          {
+            "name": "rtss_wbs_no",
+            "alias": "WBS#",
+            "show": true
+          },
+          {
+            "name": "priority",
+            "alias": "Priority",
+            "show": true
+          },
+          {
+            "name": "survey_begin",
+            "alias": "Begin Date",
+            "show": true
+          },
+          {
+            "name": "survey_end",
+            "alias": "End Date",
+            "show": true
+          },
+          {
+            "name": "status",
+            "alias": "Status",
+            "show": true
+          },
+          {
+            "name": "status_date",
+            "alias": "Status set Date",
+            "show": true
+          },
+          {
+            "name": "status_notes",
+            "alias": "Status Notes",
+            "show": true
+          },
+          {
+            "name": "surveyor",
+            "alias": "Technician",
+            "show": true
+          },
+          {
+            "name": "surveyor_notes",
+            "alias": "Surveyor Notes",
+            "show": true
+          },
+          {
+            "name": "assigned_date",
+            "alias": "Assigned on Date",
+            "show": true
+          },
+          {
+            "name": "creator",
+            "alias": "creator",
+            "show": true
+          },
+          {
+            "name": "created",
+            "alias": "created",
+            "show": true
+          },
+          {
+            "name": "editor",
+            "alias": "editor",
+            "show": true
+          },
+          {
+            "name": "edited",
+            "alias": "edited",
+            "show": true
+          }
+        ]
+      },
+      "show": null,
+      "showAttachments": false,
+      "sortField": "OBJECTID",
+      "isDescending": false
+    },
+    {
+      "name": "Station",
+      "id": "348404d1f6594fc6b4223403b7bdfe67",
+      "layer": {
+        "url": "https://gisprep.yuma.army.mil/ags/rest/services/Surveys/range_surveys/FeatureServer/3",
+        "fields": [
+          {
+            "name": "OBJECTID",
+            "alias": "OBJECTID",
+            "show": true,
+            "format": {
+              "places": 0,
+              "digitSeparator": false
+            }
+          },
+          {
+            "name": "st_uid",
+            "alias": "Station UID",
+            "show": true,
+            "format": {
+              "places": 0,
+              "digitSeparator": false
+            }
+          },
+          {
+            "name": "survey_fk",
+            "alias": "Survey UID",
+            "show": true,
+            "format": {
+              "places": 0,
+              "digitSeparator": false
+            }
+          },
+          {
+            "name": "st_name",
+            "alias": "Station ID",
+            "show": true
+          },
+          {
+            "name": "st_x",
+            "alias": "X",
+            "show": true,
+            "format": {
+              "places": 6,
+              "digitSeparator": false
+            }
+          },
+          {
+            "name": "st_y",
+            "alias": "Y",
+            "show": true,
+            "format": {
+              "places": 6,
+              "digitSeparator": false
+            }
+          },
+          {
+            "name": "st_z",
+            "alias": "Z",
+            "show": true,
+            "format": {
+              "places": 6,
+              "digitSeparator": false
+            }
+          },
+          {
+            "name": "st_hi",
+            "alias": "HI (incl)",
+            "show": true,
+            "format": {
+              "places": 6,
+              "digitSeparator": false
+            }
+          },
+          {
+            "name": "st_ca",
+            "alias": "Convergence Angle",
+            "show": true,
+            "format": {
+              "places": 6,
+              "digitSeparator": false
+            }
+          }
+        ]
+      },
+      "show": null,
+      "showAttachments": false,
+      "sortField": "OBJECTID",
+      "isDescending": false
+    },
+    {
+      "name": "Survey Point",
+      "id": "5a9aeb437ddc49028c4c1110d3419131",
+      "layer": {
+        "url": "https://gisprep.yuma.army.mil/ags/rest/services/Surveys/range_surveys/FeatureServer/1",
+        "fields": [
+          {
+            "name": "OBJECTID",
+            "alias": "OBJECTID",
+            "show": true,
+            "format": {
+              "places": 0,
+              "digitSeparator": false
+            }
+          },
+          {
+            "name": "survey_fk",
+            "alias": "Survey UID",
+            "show": true,
+            "format": {
+              "places": 0,
+              "digitSeparator": false
+            }
+          },
+          {
+            "name": "station_fk",
+            "alias": "Station UID",
+            "show": true,
+            "format": {
+              "places": 0,
+              "digitSeparator": false
+            }
+          },
+          {
+            "name": "pt_uid",
+            "alias": "Point UID",
+            "show": true,
+            "format": {
+              "places": 0,
+              "digitSeparator": false
+            }
+          },
+          {
+            "name": "pt_type",
+            "alias": "Point Type",
+            "show": true
+          },
+          {
+            "name": "pt_name",
+            "alias": "Point ID",
+            "show": true
+          },
+          {
+            "name": "ts_ha",
+            "alias": "HA",
+            "show": true
+          },
+          {
+            "name": "ts_hd",
+            "alias": "HD",
+            "show": true,
+            "format": {
+              "places": 6,
+              "digitSeparator": false
+            }
+          },
+          {
+            "name": "ts_vd",
+            "alias": "VD",
+            "show": true,
+            "format": {
+              "places": 6,
+              "digitSeparator": false
+            }
+          },
+          {
+            "name": "ts_ht",
+            "alias": "HT (incl)",
+            "show": true,
+            "format": {
+              "places": 6,
+              "digitSeparator": false
+            }
+          },
+          {
+            "name": "ts_edm_type",
+            "alias": "EDM Type",
+            "show": true
+          },
+          {
+            "name": "ts_edm_mode",
+            "alias": "EDM Mode",
+            "show": true
+          },
+          {
+            "name": "ts_prism_type",
+            "alias": "Prism Type",
+            "show": true
+          },
+          {
+            "name": "ts_prism_const",
+            "alias": "Prism Const",
+            "show": true,
+            "format": {
+              "places": 6,
+              "digitSeparator": false
+            }
+          },
+          {
+            "name": "date_time",
+            "alias": "DateTime",
+            "show": true
+          },
+          {
+            "name": "ypg_x",
+            "alias": "YPG_X",
+            "show": true,
+            "format": {
+              "places": 6,
+              "digitSeparator": false
+            }
+          },
+          {
+            "name": "ypg_y",
+            "alias": "YPG_Y",
+            "show": true,
+            "format": {
+              "places": 6,
+              "digitSeparator": false
+            }
+          },
+          {
+            "name": "ypg_z",
+            "alias": "YPG_Z",
+            "show": true,
+            "format": {
+              "places": 6,
+              "digitSeparator": false
+            }
+          },
+          {
+            "name": "wgs84_x",
+            "alias": "WGS84_X",
+            "show": true
+          },
+          {
+            "name": "wgs84_y",
+            "alias": "WGS84_Y",
+            "show": true
+          },
+          {
+            "name": "wgs84_z",
+            "alias": "WGS84_Z",
+            "show": true
+          },
+          {
+            "name": "gps_northing",
+            "alias": "northing",
+            "show": true,
+            "format": {
+              "places": 6,
+              "digitSeparator": false
+            }
+          },
+          {
+            "name": "gps_easting",
+            "alias": "easting",
+            "show": true,
+            "format": {
+              "places": 6,
+              "digitSeparator": false
+            }
+          },
+          {
+            "name": "gps_ortho_ht",
+            "alias": "ortho_ht",
+            "show": true,
+            "format": {
+              "places": 6,
+              "digitSeparator": false
+            }
+          },
+          {
+            "name": "gps_ellip_ht",
+            "alias": "ellip_ht",
+            "show": true,
+            "format": {
+              "places": 6,
+              "digitSeparator": false
+            }
+          },
+          {
+            "name": "gps_cq3d",
+            "alias": "cq3d",
+            "show": true,
+            "format": {
+              "places": 6,
+              "digitSeparator": false
+            }
+          },
+          {
+            "name": "comments",
+            "alias": "Comments",
+            "show": true
+          }
+        ]
+      },
+      "show": null,
+      "showAttachments": false,
+      "sortField": "OBJECTID",
+      "isDescending": false
+    },
+    {
+      "name": "Survey Line",
+      "id": "97bd67ccd1f74d0eb96f3bdabe388bdd",
+      "layer": {
+        "url": "https://gisprep.yuma.army.mil/ags/rest/services/Surveys/range_surveys/FeatureServer/2",
+        "fields": [
+          {
+            "name": "OBJECTID",
+            "alias": "OBJECTID",
+            "show": true,
+            "format": {
+              "places": 0,
+              "digitSeparator": false
+            }
+          },
+          {
+            "name": "sl_uid",
+            "alias": "Line UID",
+            "show": true,
+            "format": {
+              "places": 0,
+              "digitSeparator": false
+            }
+          },
+          {
+            "name": "survey_fk",
+            "alias": "Survey UID",
+            "show": true,
+            "format": {
+              "places": 0,
+              "digitSeparator": false
+            }
+          },
+          {
+            "name": "station_fk",
+            "alias": "Station UID",
+            "show": true,
+            "format": {
+              "places": 0,
+              "digitSeparator": false
+            }
+          },
+          {
+            "name": "sl_type",
+            "alias": "Survey Line Type",
+            "show": true
+          },
+          {
+            "name": "sl_name",
+            "alias": "Line Name",
+            "show": true
+          },
+          {
+            "name": "sl_computed_az",
+            "alias": "Computed Az",
+            "show": true
+          },
+          {
+            "name": "sl_observed_az",
+            "alias": "Observed Az",
+            "show": true
+          },
+          {
+            "name": "tmp_ob_cv_DD",
+            "alias": "Obs Adj Az (DD)",
+            "show": true,
+            "format": {
+              "places": 6,
+              "digitSeparator": false
+            }
+          },
+          {
+            "name": "tmp_ob_cv_DMS",
+            "alias": "Obs Adj Az (DMS)",
+            "show": true
+          },
+          {
+            "name": "tmp_conv_angle",
+            "alias": "Convergence Adj (DD)",
+            "show": true,
+            "format": {
+              "places": 6,
+              "digitSeparator": false
+            }
+          },
+          {
+            "name": "Shape__Length",
+            "alias": "Shape.STLength()",
+            "show": true,
+            "format": {
+              "places": 6,
+              "digitSeparator": false
+            }
+          }
+        ]
+      },
+      "show": null,
+      "showAttachments": false,
+      "sortField": "OBJECTID",
+      "isDescending": false
+    },
+    {
+      "name": "Orientation Line",
+      "id": "72ed52d0492e4a378bfece0175770e79",
+      "layer": {
+        "url": "https://gisprep.yuma.army.mil/ags/rest/services/Surveys/range_surveys/FeatureServer/2",
+        "fields": [
+          {
+            "name": "OBJECTID",
+            "alias": "OBJECTID",
+            "show": true,
+            "format": {
+              "places": 0,
+              "digitSeparator": false
+            }
+          },
+          {
+            "name": "sl_uid",
+            "alias": "Line UID",
+            "show": true,
+            "format": {
+              "places": 0,
+              "digitSeparator": false
+            }
+          },
+          {
+            "name": "survey_fk",
+            "alias": "Survey UID",
+            "show": true,
+            "format": {
+              "places": 0,
+              "digitSeparator": false
+            }
+          },
+          {
+            "name": "station_fk",
+            "alias": "Station UID",
+            "show": true,
+            "format": {
+              "places": 0,
+              "digitSeparator": false
+            }
+          },
+          {
+            "name": "sl_type",
+            "alias": "Survey Line Type",
+            "show": true
+          },
+          {
+            "name": "sl_name",
+            "alias": "Line Name",
+            "show": true
+          },
+          {
+            "name": "sl_computed_az",
+            "alias": "Computed Az",
+            "show": true
+          },
+          {
+            "name": "sl_observed_az",
+            "alias": "Observed Az",
+            "show": true
+          },
+          {
+            "name": "tmp_ob_cv_DD",
+            "alias": "Obs Adj Az (DD)",
+            "show": true,
+            "format": {
+              "places": 6,
+              "digitSeparator": false
+            }
+          },
+          {
+            "name": "tmp_ob_cv_DMS",
+            "alias": "Obs Adj Az (DMS)",
+            "show": true
+          },
+          {
+            "name": "tmp_conv_angle",
+            "alias": "Convergence Adj (DD)",
+            "show": true,
+            "format": {
+              "places": 6,
+              "digitSeparator": false
+            }
+          },
+          {
+            "name": "Shape__Length",
+            "alias": "Shape.STLength()",
+            "show": true,
+            "format": {
+              "places": 6,
+              "digitSeparator": false
+            }
+          }
+        ]
+      },
+      "show": null,
+      "showAttachments": false,
+      "sortField": "OBJECTID",
+      "isDescending": false
+    },
+    {
+      "name": "Backsight Line",
+      "id": "171b3efa4b4a40ce94b116383ca94659",
+      "layer": {
+        "url": "https://gisprep.yuma.army.mil/ags/rest/services/Surveys/range_surveys/FeatureServer/2",
+        "fields": [
+          {
+            "name": "OBJECTID",
+            "alias": "OBJECTID",
+            "show": true,
+            "format": {
+              "places": 0,
+              "digitSeparator": false
+            }
+          },
+          {
+            "name": "sl_uid",
+            "alias": "Line UID",
+            "show": true,
+            "format": {
+              "places": 0,
+              "digitSeparator": false
+            }
+          },
+          {
+            "name": "survey_fk",
+            "alias": "Survey UID",
+            "show": true,
+            "format": {
+              "places": 0,
+              "digitSeparator": false
+            }
+          },
+          {
+            "name": "station_fk",
+            "alias": "Station UID",
+            "show": true,
+            "format": {
+              "places": 0,
+              "digitSeparator": false
+            }
+          },
+          {
+            "name": "sl_type",
+            "alias": "Survey Line Type",
+            "show": true
+          },
+          {
+            "name": "sl_name",
+            "alias": "Line Name",
+            "show": true
+          },
+          {
+            "name": "sl_computed_az",
+            "alias": "Computed Az",
+            "show": true
+          },
+          {
+            "name": "sl_observed_az",
+            "alias": "Observed Az",
+            "show": true
+          },
+          {
+            "name": "tmp_ob_cv_DD",
+            "alias": "Obs Adj Az (DD)",
+            "show": true,
+            "format": {
+              "places": 6,
+              "digitSeparator": false
+            }
+          },
+          {
+            "name": "tmp_ob_cv_DMS",
+            "alias": "Obs Adj Az (DMS)",
+            "show": true
+          },
+          {
+            "name": "tmp_conv_angle",
+            "alias": "Convergence Adj (DD)",
+            "show": true,
+            "format": {
+              "places": 6,
+              "digitSeparator": false
+            }
+          },
+          {
+            "name": "Shape__Length",
+            "alias": "Shape.STLength()",
+            "show": true,
+            "format": {
+              "places": 6,
+              "digitSeparator": false
+            }
+          }
+        ]
+      },
+      "show": null,
+      "showAttachments": false,
+      "sortField": "OBJECTID",
+      "isDescending": false
+    },
+    {
+      "name": "LOF",
+      "id": "b010f496cf424942b11478ab672a49f1",
+      "layer": {
+        "url": "https://gisprep.yuma.army.mil/ags/rest/services/Surveys/range_surveys/FeatureServer/2",
+        "fields": [
+          {
+            "name": "OBJECTID",
+            "alias": "OBJECTID",
+            "show": true,
+            "format": {
+              "places": 0,
+              "digitSeparator": false
+            }
+          },
+          {
+            "name": "sl_uid",
+            "alias": "Line UID",
+            "show": true,
+            "format": {
+              "places": 0,
+              "digitSeparator": false
+            }
+          },
+          {
+            "name": "survey_fk",
+            "alias": "Survey UID",
+            "show": true,
+            "format": {
+              "places": 0,
+              "digitSeparator": false
+            }
+          },
+          {
+            "name": "station_fk",
+            "alias": "Station UID",
+            "show": true,
+            "format": {
+              "places": 0,
+              "digitSeparator": false
+            }
+          },
+          {
+            "name": "sl_type",
+            "alias": "Survey Line Type",
+            "show": true
+          },
+          {
+            "name": "sl_name",
+            "alias": "Line Name",
+            "show": true
+          },
+          {
+            "name": "sl_computed_az",
+            "alias": "Computed Az",
+            "show": true
+          },
+          {
+            "name": "sl_observed_az",
+            "alias": "Observed Az",
+            "show": true
+          },
+          {
+            "name": "tmp_ob_cv_DD",
+            "alias": "Obs Adj Az (DD)",
+            "show": true,
+            "format": {
+              "places": 6,
+              "digitSeparator": false
+            }
+          },
+          {
+            "name": "tmp_ob_cv_DMS",
+            "alias": "Obs Adj Az (DMS)",
+            "show": true
+          },
+          {
+            "name": "tmp_conv_angle",
+            "alias": "Convergence Adj (DD)",
+            "show": true,
+            "format": {
+              "places": 6,
+              "digitSeparator": false
+            }
+          },
+          {
+            "name": "Shape__Length",
+            "alias": "Shape.STLength()",
+            "show": true,
+            "format": {
+              "places": 6,
+              "digitSeparator": false
+            }
+          }
+        ]
+      },
+      "show": null,
+      "showAttachments": false,
+      "sortField": "OBJECTID",
+      "isDescending": false
+    },
+    {
+      "name": "Surveys",
+      "id": "b5fc004dacd5435f8807e589bd6f9701",
+      "layer": {
+        "url": "Https://gisprep.yuma.army.mil/ags/rest/services/Surveys/range_surveys/FeatureServer/0",
+        "fields": [
+          {
+            "name": "OBJECTID",
+            "alias": "OBJECTID",
+            "show": false,
+            "format": {
+              "places": 0,
+              "digitSeparator": false
+            }
+          },
+          {
+            "name": "survey_uid",
+            "alias": "Survey UID",
+            "show": true,
+            "format": {
+              "places": 0,
+              "digitSeparator": false
+            }
+          },
+          {
+            "name": "name",
+            "alias": "Survey Name",
+            "show": true
+          },
+          {
+            "name": "classification",
+            "alias": "Classification",
+            "show": true
+          },
+          {
+            "name": "program",
+            "alias": "Program",
+            "show": true
+          },
+          {
+            "name": "site",
+            "alias": "Site",
+            "show": true
+          },
+          {
+            "name": "date",
+            "alias": "Date",
+            "show": true,
+            "format": {
+              "dateFormat": "shortDateShortTime"
+            }
+          },
+          {
+            "name": "poc",
+            "alias": "POC",
+            "show": true
+          },
+          {
+            "name": "instrument_type",
+            "alias": "Inst Type",
+            "show": true
+          },
+          {
+            "name": "instrument_sn",
+            "alias": "Inst S/N",
+            "show": true
+          },
+          {
+            "name": "surveyor",
+            "alias": "Surveyor Crew",
+            "show": true
+          },
+          {
+            "name": "reference",
+            "alias": "Reference",
+            "show": true
+          },
+          {
+            "name": "grid",
+            "alias": "Grid",
+            "show": true
+          },
+          {
+            "name": "uom",
+            "alias": "Unit",
+            "show": true
+          },
+          {
+            "name": "source_file",
+            "alias": "source_file",
+            "show": true
+          },
+          {
+            "name": "source_status",
+            "alias": "Source Status",
+            "show": true
+          },
+          {
+            "name": "assignment_fk",
+            "alias": "Assignment ID",
+            "show": true,
+            "format": {
+              "places": 0,
+              "digitSeparator": false
+            }
+          },
+          {
+            "name": "review_status",
+            "alias": "Review Status",
+            "show": true
+          },
+          {
+            "name": "reviewer",
+            "alias": "Reviewer Name",
+            "show": true
+          },
+          {
+            "name": "review_date",
+            "alias": "Review Date",
+            "show": true,
+            "format": {
+              "dateFormat": "shortDateShortTime"
+            }
+          },
+          {
+            "name": "addl_contacts",
+            "alias": "Addl Contacts",
+            "show": true
+          },
+          {
+            "name": "Shape__Length",
+            "alias": "Shape.STLength()",
+            "show": true,
+            "format": {
+              "places": 6,
+              "digitSeparator": false
+            }
+          },
+          {
+            "name": "Shape__Area",
+            "alias": "Shape.STArea()",
+            "show": true,
+            "format": {
+              "places": 6,
+              "digitSeparator": false
+            }
+          }
+        ]
+      },
+      "show": null,
+      "showAttachments": false,
+      "sortField": "OBJECTID",
+      "isDescending": true
+    },
+    {
+      "name": "Test Sites",
+      "id": "a3293e3fb7644b4c853a03ef4e8b1990",
+      "layer": {
+        "url": "https://gisprep.yuma.army.mil/ags/rest/services/Surveys/range_surveys/FeatureServer/6",
+        "fields": [
+          {
+            "name": "OBJECTID",
+            "alias": "OBJECTID",
+            "show": true,
+            "format": {
+              "places": 0,
+              "digitSeparator": false
+            }
+          },
+          {
+            "name": "Name",
+            "alias": "Name",
+            "show": true
+          },
+          {
+            "name": "Latitude",
+            "alias": "Latitude",
+            "show": true,
+            "format": {
+              "places": 6,
+              "digitSeparator": false
+            }
+          },
+          {
+            "name": "Longitude",
+            "alias": "Longitude",
+            "show": true,
+            "format": {
+              "places": 6,
+              "digitSeparator": false
+            }
+          },
+          {
+            "name": "YPGX",
+            "alias": "YPGX",
+            "show": true,
+            "format": {
+              "places": 6,
+              "digitSeparator": false
+            }
+          },
+          {
+            "name": "YPGY",
+            "alias": "YPGY",
+            "show": true,
+            "format": {
+              "places": 6,
+              "digitSeparator": false
+            }
+          },
+          {
+            "name": "Northing",
+            "alias": "Northing",
+            "show": true,
+            "format": {
+              "places": 6,
+              "digitSeparator": false
+            }
+          },
+          {
+            "name": "Easting",
+            "alias": "Easting",
+            "show": true,
+            "format": {
+              "places": 6,
+              "digitSeparator": false
+            }
+          },
+          {
+            "name": "Latdms",
+            "alias": "Latdms",
+            "show": true
+          },
+          {
+            "name": "Longdms",
+            "alias": "Longdms",
+            "show": true
+          },
+          {
+            "name": "Z",
+            "alias": "Z",
+            "show": true,
+            "format": {
+              "places": 6,
+              "digitSeparator": false
+            }
+          }
+        ]
+      },
+      "show": null,
+      "showAttachments": false,
+      "sortField": "OBJECTID",
+      "isDescending": false
+    },
+    {
+      "name": "orientation_sites",
+      "id": "cbcf58bf076541f1a81db7c6e0419374",
+      "layer": {
+        "url": "https://gisprep.yuma.army.mil/ags/rest/services/Surveys/range_surveys/FeatureServer/4",
+        "fields": [
+          {
+            "name": "OBJECTID",
+            "alias": "OBJECTID",
+            "show": true,
+            "format": {
+              "places": 0,
+              "digitSeparator": false
+            }
+          },
+          {
+            "name": "Site",
+            "alias": "Site",
+            "show": true
+          },
+          {
+            "name": "Abbreviations",
+            "alias": "Abbreviations",
+            "show": true
+          },
+          {
+            "name": "X",
+            "alias": "X",
+            "show": true,
+            "format": {
+              "places": 6,
+              "digitSeparator": false
+            }
+          },
+          {
+            "name": "Y",
+            "alias": "Y",
+            "show": true,
+            "format": {
+              "places": 6,
+              "digitSeparator": false
+            }
+          },
+          {
+            "name": "Z",
+            "alias": "Z",
+            "show": true,
+            "format": {
+              "places": 6,
+              "digitSeparator": false
+            }
+          }
+        ]
+      },
+      "show": null,
+      "showAttachments": false,
+      "sortField": "OBJECTID",
+      "isDescending": false
+    }
+  ],
+  "table": {
+    "pageSizeOptions": [
+      25,
+      50,
+      100,
+      1000
+    ]
+  },
+  "hideExportButton": true,
+  "initiallyExpand": false,
+  "filterByMapExtent": false,
+  "allowTextSelection": true,
+  "syncWithLayers": true
+}

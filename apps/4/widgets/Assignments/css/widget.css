@@ -1,0 +1,79 @@
+.esri-selector {
+    position: relative;
+    width: 100%;
+    display: block;
+    font-size: 14px;
+    background-color: #000000;
+    background-position: right top;
+    /*background-size: 34px 24px;*/
+    background-repeat: no-repeat;
+    background-image: url(down.png);
+}
+
+.esri-selector .sel {
+    position: relative;
+    height: 30px;
+    line-height: 24px;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    background-position: 10px 0px;
+    background-size: 20px;
+    background-repeat: no-repeat;
+    background-image: url(chkon.png);
+    cursor: pointer;
+    padding-left: 34px;
+    box-sizing: border-box;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.esri-selector .items {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    display: block;
+    overflow-x: hidden;
+    overflow-y: auto;
+    color: rgba(255, 255, 255, 0.7);
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+}
+
+.esri-selector .items.collapsed {
+    height: 0px;
+    overflow-y: hidden;
+}
+
+.esri-selector .item {
+    position: relative;
+    height: 24px;
+    line-height: 24px;
+    display: block;
+    background-position: 10px 0px;
+    background-size: 20px;
+    background-repeat: no-repeat;
+    background-image: url(chk.png);
+    cursor: pointer;
+    margin-bottom: 6px;
+    padding-left: 34px;
+    box-sizing: border-box;
+}
+
+.esri-selector .item:first-child {
+    margin-top: 10px;
+}
+
+.esri-selector .item.chk {
+    background-image: url(chkon.png) !important;
+}
+
+
+/* MEDIA SPECIFIC: PHONES */
+
+@media only screen and (max-width: 500px) {
+    
+}
+
+

@@ -1,0 +1,8 @@
+{
+  "surveyIdField": "survey_uid",
+  "surveyMapService": "https://gisprep.yuma.army.mil/ags/rest/services/Surveys/range_surveys/MapServer",
+  "surveyLayerId": "0",
+  "filterSurveysByField": "name",
+  "writeSurveyDataToExcelUrl": "https://gisprep.yuma.army.mil/ags/rest/services/exportsurveydata/GPServer/Export%20Survey%20to%20Excel",
+  "exportWebMapTaskUrl": "https://gisprep.yuma.army.mil/ags/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task"
+}

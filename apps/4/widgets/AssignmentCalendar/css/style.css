@@ -1,0 +1,15 @@
+.fc-daygrid-event {
+  cursor: pointer;
+}
+.assignment-calendar-info-title {
+  text-align: center;
+  margin-bottom: 10px;
+}
+.assignment-calendar-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.assignment-calendar-item {
+  display: grid;
+  grid-template-columns: 115px 1fr;
+}

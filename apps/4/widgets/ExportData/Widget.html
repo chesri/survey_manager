@@ -1,0 +1,47 @@
+<div style="height: 90%">
+  <div data-dojo-attach-point="processingPanel" class="processing-div" style="display: none">
+    <img id="loadingImg" src="configs/loading/images/predefined_loading_4.gif" />
+  </div>
+  <div class="input-section">Select a Project on the Map or Enter the Project ID below</div>
+  <div class="input-section">
+    <label for="projectId">Project ID *</label>
+    <input type="text" id="projectId" data-dojo-type="dijit/form/TextBox" data-dojo-attach-point="projectIdInput" />
+  </div>
+  <div class="submit-section">
+    <button data-dojo-type="dijit/form/Button" type="submit" data-dojo-attach-event="click:submitExport">Submit</button>
+  </div>
+
+  <!-- Dialog when multiple projects are found at a clicked location -->
+  <div class="select-project-dialog" data-dojo-type="dijit/Dialog" data-dojo-id="selectProjectDialog" title="Multiple Projects Found" data-dojo-attach-point="selectProjectDialog">
+    <div class="dijitDialogPaneContentArea">
+      <div>
+        <label for="surveySelect">Mutiple projects were found. Please select one from the list.</label>
+        <select id="surveySelect" data-dojo-attach-point="surveySelect" data-dojo-type="dijit/form/Select"></select>
+      </div>
+    </div>
+    <div class="dijitDialogPaneActionBar">
+      <button data-dojo-type="dijit/form/Button" type="submit" data-dojo-attach-event="click:projectSelected">OK</button>
+      <button data-dojo-type="dijit/form/Button" type="button" onClick="selectProjectDialog.hide()">Cancel</button>
+    </div>
+  </div>
+
+  <!-- Dialog when no projects are found at a clicked location -->
+  <div data-dojo-type="dijit/Dialog" data-dojo-id="noProjectDialog" title="No Projects Found" data-dojo-attach-point="noProjectDialog">
+    <div class="dijitDialogPaneContentArea">
+      <div>No projects were found at this location. Please try again.</div>
+      <div class="dijitDialogPaneActionBar">
+        <button data-dojo-type="dijit/form/Button" type="button" onClick="noProjectDialog.hide()">OK</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dialog if no project is chosen and the user tries to submit -->
+  <div data-dojo-type="dijit/Dialog" data-dojo-id="requiredFieldsDialog" title="Required Fields" data-dojo-attach-point="requiredFieldsDialog">
+    <div class="dijitDialogPaneContentArea">
+      <div>A project ID and output file name are required. Please try again.</div>
+      <div class="dijitDialogPaneActionBar">
+        <button data-dojo-type="dijit/form/Button" type="button" onClick="requiredFieldsDialog.hide()">OK</button>
+      </div>
+    </div>
+  </div>
+</div>

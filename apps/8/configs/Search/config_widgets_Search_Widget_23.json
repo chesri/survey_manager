@@ -1,0 +1,62 @@
+{
+  "allPlaceholder": "Search Assignments & Surveys",
+  "showInfoWindowOnSelect": true,
+  "sources": [
+    {
+      "layerId": "9bd0c7cecacc4c2a8f656b28583dc60d",
+      "url": "https://gisprep.yuma.army.mil/ags/rest/services/Surveys/range_surveys/FeatureServer/5",
+      "name": "Assignments by Status",
+      "placeholder": "Search for Assignment Status",
+      "searchFields": [
+        "rtss_program_name",
+        "status"
+      ],
+      "displayField": "rtss_program_name",
+      "exactMatch": false,
+      "searchInCurrentMapExtent": false,
+      "panToScale": false,
+      "zoomScale": null,
+      "maxSuggestions": 6,
+      "maxResults": 6,
+      "type": "query"
+    },
+    {
+      "layerId": "fdf96da1a90b457eaf28fca0c5559e1b",
+      "url": "https://gisprep.yuma.army.mil/ags/rest/services/Surveys/range_surveys/FeatureServer/5",
+      "name": "Assignments",
+      "placeholder": "Search for Assignment",
+      "searchFields": [
+        "rtss_location",
+        "rtss_program_name",
+        "rtss_test_officer"
+      ],
+      "displayField": "rtss_program_name",
+      "exactMatch": false,
+      "searchInCurrentMapExtent": false,
+      "panToScale": false,
+      "zoomScale": null,
+      "maxSuggestions": 6,
+      "maxResults": 6,
+      "type": "query"
+    },
+    {
+      "layerId": "165c96d5be494313bfd5052139ad91fd",
+      "url": "Https://gisprep.yuma.army.mil/ags/rest/services/Surveys/range_surveys/FeatureServer/0",
+      "name": "Surveys",
+      "placeholder": "Search for Survey",
+      "searchFields": [
+        "program",
+        "poc",
+        "surveyor"
+      ],
+      "displayField": "name",
+      "exactMatch": false,
+      "searchInCurrentMapExtent": false,
+      "panToScale": false,
+      "zoomScale": null,
+      "maxSuggestions": 6,
+      "maxResults": 6,
+      "type": "query"
+    }
+  ]
+}

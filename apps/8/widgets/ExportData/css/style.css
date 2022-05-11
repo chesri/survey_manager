@@ -1,0 +1,32 @@
+.export-data-widget .dijitTextBox,
+.select-project-dialog #surveySelect {
+  width: 90%;
+}
+
+.export-data-widget .input-section {
+  margin-top: 10px;
+}
+
+.export-data-widget .submit-section {
+  margin-top: 25px;
+  text-align: right;
+  margin-right: 30px;
+}
+
+.export-data-widget .processing-div {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: 0.4;
+  text-align: center;
+  flex-direction: column;
+}
+
+.export-data-widget #loadingImg {
+  width: 40px;
+  height: 40px;
+  margin: auto;
+}

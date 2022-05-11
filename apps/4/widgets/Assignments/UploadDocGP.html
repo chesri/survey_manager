@@ -1,0 +1,20 @@
+<div>
+	
+	<div style="width: 100%; text-align: center; padding-top: 10px;">
+		<div style="display:block; font-weight: bold; padding: 10px 0 25px 0; font-size: 1.4em; width: 100%;">Upload Documents to Assignment</div>
+		<button type="button" class="jimu-btn" data-dojo-attach-point="btnUpload" data-dojo-attach-event="click:browseUploadPackage">Browse To Document</button></div>
+	<div data-dojo-attach-point="uploadPanel">
+    	<form method="post" data-dojo-attach-point="uploadFileContainer" enctype="multipart/form-data">
+     		<input data-dojo-attach-point="uploadFileInput" type='file' name='file' id='fInput' style="display: none;" accept=".xls,.xlsx,.txt,.asc">
+		</form>
+	</div>
+	<div data-dojo-attach-point="toolMsgPanel" style="display: none; padding: 15px 0;">
+		<div>Tool Progress:</div>
+		<select data-dojo-attach-point="toolMsgList" size="5" style="width: 100%;"></select>
+	</div>
+	<!--<div style="color: green; padding: 15px;" data-dojo-attach-point="msg"></div>-->
+	<hr />
+	<div style="text-align: center; padding-top: 10px;"><button data-dojo-attach-point="btnCancel" type="button" class="jimu-btn" data-dojo-attach-event="click:backToMainPanel">Exit</button></div>
+	
+	
+</div>

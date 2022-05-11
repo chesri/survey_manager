@@ -1,0 +1,87 @@
+{
+  "name": "importgpsexcel",
+  "displayName": "Import GPS Excel File",
+  "description": "Takes a Range Survey report spreadsheet and loads the data recorded in it to two tables in Geodatabase: Projects (for project level data) and Surveys (for equipment location data).",
+  "category": "",
+  "helpUrl": "https://gisprep.yuma.army.mil/ags/rest/directories/arcgisoutput/Surveys/range_survey/importdata_GPServer/survey_importdata/importgpsexcel.htm",
+  "_ssl": true,
+  "serverInfo": {
+    "currentVersion": 10.91,
+    "url": "https://gisprep.yuma.army.mil/ags/rest/services/Surveys/range_surveys/importdata/GPServer",
+    "hasResultMapServer": false,
+    "resultMapServerName": "",
+    "supportsUpload": true,
+    "maxUploadFileSize": 2000
+  },
+  "useResultMapServer": false,
+  "taskUrl": "https://gisprep.yuma.army.mil/ags/rest/services/Surveys/range_surveys/importdata/GPServer/Import%20GPS%20Excel%20File",
+  "isSynchronous": false,
+  "inputParams": [
+    {
+      "name": "Geodetics_XLS_File",
+      "dataType": "GPDataFile",
+      "description": "Formatted Excel worksheet containing project information with list of range equipment and coordinates.",
+      "filter": {
+        "type": "file",
+        "list": [
+          "xls",
+          "xlsx"
+        ]
+      },
+      "defaultValue": "url:",
+      "category": "",
+      "label": "Geodetics XLS File",
+      "visible": true,
+      "required": true,
+      "tooltip": "Geodetics XLS File"
+    },
+    {
+      "name": "Assignment_ID",
+      "dataType": "GPLong",
+      "description": "Enter the assignment ID to link the survey project with the assignment.",
+      "defaultValue": 12,
+      "category": "",
+      "label": "Assignment ID",
+      "visible": true,
+      "required": true
+    },
+    {
+      "name": "esri_out_feature_service_name",
+      "dataType": "GPString",
+      "description": "The name of the optional feature service to create on the federated server containing the result of this tool. If no name is specified an output feature service will not be created.",
+      "defaultValue": "",
+      "category": "",
+      "label": "Output Feature Service Name",
+      "visible": true,
+      "required": false
+    }
+  ],
+  "outputParams": [
+    {
+      "name": "Output_Messages",
+      "dataType": "GPString",
+      "description": "",
+      "defaultValue": "",
+      "category": "",
+      "label": "Output Messages",
+      "visible": true,
+      "required": false
+    },
+    {
+      "name": "result_polygon",
+      "dataType": "GPFeatureRecordSetLayer",
+      "description": "",
+      "defaultValue": {},
+      "category": "",
+      "label": "result_polygon",
+      "visible": true,
+      "required": false,
+      "featureSetMode": "layers"
+    }
+  ],
+  "shareResults": false,
+  "layerOrder": [
+    "result_polygon"
+  ],
+  "showExportButton": false
+}

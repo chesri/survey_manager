@@ -1,0 +1,16 @@
+{
+	"categories": [
+		{"label": "Project Date", "field": "project_date", "direction": "D"},
+		{"label": "Program Name", "field": "rtss_program_name", "direction": "A"},
+		{"label": "Test Officer", "field": "rtss_test_officer", "direction": "A"}
+	],
+	"refreshLayers": ["Assignments by Surveyor", "Assignments by Status"],
+	"assignmentLayer": "https://clt-cmcguire10l.esri.com/server/rest/services/Yuma20/yuma_survey/FeatureServer/2",
+	"surveyorTable": "http://clt-cmcguire10l.esri.com/server/rest/services/Yuma20/yuma_survey/FeatureServer/10",
+	"siteLayer": "http://clt-cmcguire10l.esri.com/server/rest/services/Yuma20/yuma_reference/MapServer/0",
+	"geoprocessing": {
+		"uploadUrl": "https://clt-cmcguire10l.esri.com/server/rest/services/Yuma20/uploadfiledata/GPServer/uploads/upload",
+		"gpsToolUrl": "https://clt-cmcguire10l.esri.com/server/rest/services/Yuma20/uploadfiledata/GPServer/Import%20GPS%20Excel%20File",
+		"tsToolUrl": "https://clt-cmcguire10l.esri.com/server/rest/services/Yuma20/uploadfiledata/GPServer/Import%20Total%20Station%20Text%20File"
+	}
+}

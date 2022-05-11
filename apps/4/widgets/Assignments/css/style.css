@@ -1,0 +1,160 @@
+.jimu-widget-assignments hr {
+  display: block;
+  margin-before: 0.5em;
+  margin-after: 0.5em;
+  margin-start: auto;
+  margin-end: auto;
+  overflow: hidden;
+  border-style: inset;
+  border-width: 1px;
+}
+.jimu-widget-assignments .coord {
+  height: 40px;
+  width: 40px;
+  background-size: 36px;
+  background-repeat: no-repeat;
+  background-position: center;
+  float: left;
+  background-image: url(images/coord.png);
+  cursor: pointer;
+  border: 2px gray solid;
+  border-radius: 5px;
+  opacity: 0.5;
+  background-color: #c8c8c8;
+}
+.jimu-widget-assignments .modify-geom {
+  height: 40px;
+  width: 40px;
+  background-size: 36px;
+  background-repeat: no-repeat;
+  background-position: center;
+  float: left;
+  background-image: url(images/move.png);
+  cursor: pointer;
+  border: 2px gray solid;
+  border-radius: 5px;
+  opacity: 0.5;
+  background-color: #c8c8c8;
+}
+.jimu-widget-assignments .modify-geom.active {
+  height: 40px;
+  width: 40px;
+  background-size: 36px;
+  background-repeat: no-repeat;
+  background-position: center;
+  float: left;
+  background-image: url(images/hourglass.png);
+  cursor: pointer;
+  border: 2px gray solid;
+  border-radius: 5px;
+  opacity: 0.5;
+  background-color: #c8c8c8;
+}
+
+.jimu-widget-assignments .coord.active {
+  border: 2px black solid;
+  opacity: 1;
+  background-color: #6d8099;
+}
+
+.jimu-widget-assignments .coordmsg {
+  opacity: 0.5;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.jimu-widget-assignments .coordmsg.active {
+  opacity: 1;
+}
+.jimu-widget-assignments .label {
+  padding-top: 10px;
+  font-weight: bold;
+}
+
+.jimu-widget-assignments .title {
+  padding: 5px 0 15px 25px;
+  font-weight: bold;
+  font-size: 1.4em;
+}
+
+.jimu-widget-assignments .img {
+  cursor: pointer;
+}
+.esri-selector {
+  position: relative;
+  width: 100%;
+  display: inline-block;
+  font-size: 14px;
+  /*background-color: #000000;*/
+  background-position: right top;
+  background-repeat: no-repeat;
+  /*background-image: url(down-arrow.png);*/
+  /*color: white;*/
+}
+
+.esri-selector .sel {
+  position: relative;
+  height: 30px;
+  line-height: 24px;
+  display: inline-block;
+  /*overflow: hidden;*/
+  text-overflow: ellipsis;
+  background-position: 15px 4px;
+  background-size: 14px;
+  background-repeat: no-repeat;
+  background-image: url(check.png);
+  cursor: pointer;
+  padding-left: 34px;
+  padding-right: 34px;
+  box-sizing: border-box;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+}
+
+.esri-selector .items {
+  position: absolute;
+  width: 100%;
+  height: 180px;
+  display: block;
+  overflow-x: hidden;
+  overflow-y: auto;
+  /*color: rgba(255, 255, 255, 0.7);*/
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
+  background-color: rgba(255, 255, 255, 0.8);
+  font-weight: bold;
+}
+
+.esri-selector .items.collapsed {
+  height: 0px;
+  overflow-y: hidden;
+}
+
+.esri-selector .item {
+  position: relative;
+  height: 24px;
+  line-height: 24px;
+  display: block;
+  background-position: 10px 0px;
+  background-size: 20px;
+  background-repeat: no-repeat;
+  background-image: url(tabon.png);
+  cursor: pointer;
+  margin-bottom: 6px;
+  padding-left: 34px;
+  box-sizing: border-box;
+}
+
+.esri-selector .item:first-child {
+  margin-top: 10px;
+}
+
+.esri-selector .item.chk {
+  background-image: url(check.png) !important;
+}
+
+/* MEDIA SPECIFIC: PHONES */
+
+@media only screen and (max-width: 500px) {
+}

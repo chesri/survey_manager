@@ -1,0 +1,92 @@
+<div tabindex="0">
+  <div class="label img" tabindex="-1" data-dojo-attach-event="click:backToMainPanel">&lt; Back</div>
+
+  <div style="padding: 10px 0" data-dojo-attach-point="newGeomSection">
+    <div class="coord active" data-dojo-attach-point="btnActivateMapClick" data-dojo-attach-event="click:activateMapClick"></div>
+    <div style="padding-left: 10px; height: 40px; display: table-cell; vertical-align: middle">
+      <label data-dojo-attach-point="cLocMsg" class="coordmsg active">Click map to set assignment location</label>
+    </div>
+  </div>
+  <div style="padding: 10px 0" data-dojo-attach-point="modifyGeomSection">
+    <div class="modify-geom" data-dojo-attach-point="btnModifyGeometry" data-dojo-attach-event="click:activateModifyGeomClick"></div>
+    <div style="padding-left: 10px; height: 40px; display: table-cell; vertical-align: middle">
+      <label data-dojo-attach-point="modifyMsg" class="coordmsg active">Click to modify the assignment location</label>
+    </div>
+  </div>
+  <div data-dojo-attach-point="cIDRow" class="modify" style="display: none">
+    <div data-dojo-attach-point="cIDLBL" class="label">Assignment ID:</div>
+    <input data-dojo-attach-point="cIDCtrl" data-dojo-type="dijit/form/TextBox" style="width: 100%; margin-bottom: 10px" readonly="true" />
+  </div>
+  <div tabindex="0">
+    <div data-dojo-attach-point="cPrjDtLBL" class="label">Project Date:</div>
+    <input data-dojo-attach-point="cPrjDtCtrl" data-dojo-type="dijit/form/DateTextBox" tabindex="0" />
+  </div>
+  <div tabindex="0">
+    <div data-dojo-attach-point="cLocLBL" class="label">RTSS Location:</div>
+    <input data-dojo-attach-point="cLocCtrl" data-dojo-type="dijit/form/ComboBox" style="width: 300px" tabindex="0" />
+  </div>
+  <div tabindex="0">
+    <div data-dojo-attach-point="cLocNoteLBL" class="label">Location Notes:</div>
+    <textarea data-dojo-attach-point="cLocNoteCtrl" data-dojo-attach-event="onkeyup:checkCommentLength" rows="4" cols="40" maxlength="255" style="width: auto" tabindex="0"></textarea>
+    <div data-dojo-attach-point="cLocNoteCnt" style="padding-bottom: 5px"></div>
+  </div>
+  <div>
+    <div data-dojo-attach-point="cProgNameLBL" class="label">Program Name:</div>
+    <input data-dojo-attach-point="cProgNameCtrl" data-dojo-type="dijit/form/ComboBox" style="width: 300px" tabindex="0" />
+  </div>
+  <div>
+    <div data-dojo-attach-point="cTestOffLBL" class="label">RTSS Test Officer:</div>
+    <input data-dojo-attach-point="cTestOffCtrl" data-dojo-type="dijit/form/ComboBox" style="width: 200px" tabindex="0" data-dojo-attach-event="onChange:handleTestOfficerSelectionChange" />
+  </div>
+  <div>
+    <div data-dojo-attach-point="cTestOffPNLBL" class="label">RTSS Test Officer Phone:</div>
+    <input data-dojo-attach-point="cTestOffPNCtrl" data-dojo-type="dijit/form/TextBox" maxlength="20" style="width: 200px" tabindex="0" />
+  </div>
+  <div>
+    <div data-dojo-attach-point="cADSSLBL" class="label">ADSS:</div>
+    <input data-dojo-attach-point="cADSSCtrl" data-dojo-type="dijit/form/TextBox" maxlength="25" style="width: 200px" tabindex="0" />
+  </div>
+  <div>
+    <div data-dojo-attach-point="cWBSLBL" class="label">WBS #:</div>
+    <input data-dojo-attach-point="cWBSCtrl" data-dojo-type="dijit/form/TextBox" maxlength="25" style="width: 200px" tabindex="0" />
+  </div>
+  <div>
+    <div data-dojo-attach-point="cPriorityLBL" class="label">Priority</div>
+    <select data-dojo-attach-point="cPriorityCtrl" style="width: 200px" data-dojo-type="dijit/form/FilteringSelect" data-dojo-props="searchAttr:'label'" tabindex="0"></select>
+  </div>
+  <div>
+    <div data-dojo-attach-point="cBegDtLBL" class="label">Begin Date:</div>
+    <input data-dojo-attach-point="cBegDtCtrl" data-dojo-type="dijit/form/DateTextBox" tabindex="0" data-dojo-attach-event="onChange:handleDateTimeChange" />
+    <input data-dojo-attach-point="cBegDtTmCtrl" type="text" data-dojo-type="dijit/form/TimeTextBox" style="width: 125px" required="true" data-dojo-attach-event="onChange:handleDateTimeChange" />
+  </div>
+  <div>
+    <div data-dojo-attach-point="cEndDtLBL" class="label">End Date:</div>
+    <input data-dojo-attach-point="cEndDtCtrl" data-dojo-type="dijit/form/DateTextBox" tabindex="0" data-dojo-attach-event="onChange:handleDateTimeChange" />
+    <input data-dojo-attach-point="cEndDtTmCtrl" type="text" data-dojo-type="dijit/form/TimeTextBox" style="width: 125px" required="true" data-dojo-attach-event="onChange:handleDateTimeChange" />
+  </div>
+  <div data-dojo-attach-point="datemsg" style="display: none; color: red; padding: 10px 0">There is an issue with your beginning or ending dates. Make sure the beginning date occurs before the ending date.</div>
+  <div>
+    <div data-dojo-attach-point="cSurveyorLBL" class="label">Surveyor:</div>
+    <select data-dojo-attach-point="cSurveyorCtrl" style="width: 200px" data-dojo-type="dijit/form/FilteringSelect" data-dojo-props="searchAttr:'label'" data-dojo-attach-event="onChange:handleSurveyorChange"></select>
+  </div>
+  <div>
+    <div data-dojo-attach-point="cSurveyNoteLBL" class="label">Surveyor Notes:</div>
+    <textarea data-dojo-attach-point="cSurveyNoteCtrl" data-dojo-attach-event="onkeyup:checkCommentLength" rows="4" cols="40" maxlength="4000" style="width: auto" tabindex="0"></textarea>
+    <div data-dojo-attach-point="cSurveyNoteCnt" style="padding-bottom: 5px"></div>
+  </div>
+  <div>
+    <div data-dojo-attach-point="cStatusLBL" class="label">Status:</div>
+    <select data-dojo-attach-point="cStatusCtrl" style="width: 200px" data-dojo-type="dijit/form/FilteringSelect" data-dojo-props="searchAttr:'name'" tabindex="0"></select>
+  </div>
+  <div>
+    <div data-dojo-attach-point="cStatNoteLBL" class="label">Status Notes:</div>
+    <textarea data-dojo-attach-point="cStatNoteCtrl" data-dojo-attach-event="onkeyup:checkCommentLength" rows="4" cols="40" maxlength="255" style="width: auto" tabindex="0"></textarea>
+    <div data-dojo-attach-point="cStatNoteCnt" style="padding-bottom: 5px"></div>
+  </div>
+
+  <div style="color: green; padding: 10px 0" data-dojo-attach-point="msg"></div>
+  <div style="text-align: center; padding-top: 10px">
+    <button data-dojo-attach-point="btnSubmit" type="button" class="jimu-btn" data-dojo-attach-event="click:submitAssignment">Submit</button
+    ><button data-dojo-attach-point="btnCancel" style="position: absolute; right: 25px" type="button" class="jimu-btn" data-dojo-attach-event="click:backToMainPanel">Cancel</button>
+  </div>
+</div>

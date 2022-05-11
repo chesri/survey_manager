@@ -1,0 +1,102 @@
+{
+  "name": "importtotalstationdata",
+  "displayName": "Import Total Station File",
+  "description": "Import Total Station File",
+  "category": "",
+  "helpUrl": "https://gisprep.yuma.army.mil/ags/rest/directories/arcgisoutput/survey/importdata_GPServer/survey_importdata/importtotalstationdata.htm",
+  "_ssl": true,
+  "serverInfo": {
+    "currentVersion": 10.91,
+    "url": "https://gisprep.yuma.army.mil/ags/rest/services/Surveys/importdata/GPServer/",
+    "hasResultMapServer": false,
+    "resultMapServerName": "",
+    "supportsUpload": true,
+    "maxUploadFileSize": 2000
+  },
+  "useResultMapServer": false,
+  "taskUrl": "https://gisprep.yuma.army.mil/ags/rest/services/Surveys/importdata/GPServer/Import%20Total%20Station%20File",
+  "isSynchronous": true,
+  "inputParams": [
+    {
+      "name": "Total_Station_File",
+      "dataType": "GPDataFile",
+      "description": "Import Total Station data text/ascii file",
+      "filter": {
+        "type": "file",
+        "list": [
+          "asc",
+          "txt"
+        ]
+      },
+      "defaultValue": "itemID:",
+      "category": "",
+      "label": "Total Station File",
+      "visible": true,
+      "required": true,
+      "tooltip": "Total Station File"
+    },
+    {
+      "name": "Assignment_ID",
+      "dataType": "GPLong",
+      "description": "-1",
+      "defaultValue": -3,
+      "category": "",
+      "label": "Assignment ID",
+      "visible": true,
+      "required": true,
+      "tooltip": "Assignment ID"
+    },
+    {
+      "name": "esri_out_feature_service_name",
+      "dataType": "GPString",
+      "description": "The name of the optional feature service to create on the federated server containing the result of this tool. If no name is specified an output feature service will not be created.",
+      "defaultValue": null,
+      "category": "",
+      "label": "Output Feature Service Name",
+      "visible": false,
+      "required": false,
+      "tooltip": "Output Feature Service Name"
+    }
+  ],
+  "outputParams": [
+    {
+      "name": "Result",
+      "dataType": "GPString",
+      "description": "",
+      "defaultValue": null,
+      "category": "",
+      "label": "Result",
+      "visible": true,
+      "required": false,
+      "tooltip": "Result",
+      "ignore": false,
+      "layerInvisible": true
+    },
+    {
+      "name": "Output_Feature_Set",
+      "dataType": "GPFeatureRecordSetLayer",
+      "description": "",
+      "defaultValue": {},
+      "category": "",
+      "label": "Output Feature Set",
+      "visible": true,
+      "required": false,
+      "featureSetMode": "layers",
+      "tooltip": "Output Feature Set",
+      "renderer": null,
+      "popup": {
+        "title": "",
+        "fields": [],
+        "enablePopup": true
+      },
+      "useDynamicSchema": false,
+      "ignore": false,
+      "layerInvisible": true
+    }
+  ],
+  "shareResults": false,
+  "layerOrder": [
+    "Output_Feature_Set"
+  ],
+  "showExportButton": false
+}

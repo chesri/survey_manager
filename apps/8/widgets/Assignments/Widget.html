@@ -1,0 +1,20 @@
+<div>
+  <div data-dojo-attach-point="panelMain" style="height: 100%; width: 100%">
+    <div style="display: block; font-weight: bold; padding: 10px 0; font-size: 1.4em; width: 100%">Existing Assignments</div>
+    <div data-dojo-attach-point="assignFieldLBL" style="font-weight: bold; padding: 10px 0 3px 0; font-size: 1.1em">Prj Date • Pgm Name • Test Officer • Surveyor:</div>
+    <select style="width: 300px" data-dojo-type="dijit/form/FilteringSelect" data-dojo-attach-point="cAssignments" data-dojo-props="searchAttr:'label'" data-dojo-attach-event="onChange:zoomToAssignment"></select>
+    <div style="padding: 10px 0">
+      <div style="display: inline-block; font-weight: bold; height: 100%">Sort By:</div>
+      <div style="display: inline-block; width: 200px" data-dojo-attach-point="cSortPanel"></div>
+    </div>
+    <div style="width: 100%; padding: 10px 0 25px 0">
+      <div style="padding-right: 10px; display: inline-block"><button data-dojo-attach-point="btnModify" type="button" data-dojo-attach-event="click:modifyAssignment" class="jimu-btn">Modify Assignment</button></div>
+
+      <div style="display: inline-block"><button data-dojo-attach-point="btnUpload" type="button" data-dojo-attach-event="click:uploadDocument" class="jimu-btn">Upload Document</button></div>
+    </div>
+    <hr />
+    <div style="text-align: center; padding-top: 25px"><button data-dojo-attach-point="btnCreate" type="button" data-dojo-attach-event="click:createNewAssignment" class="jimu-btn">Create New Assignment</button></div>
+  </div>
+  <div data-dojo-attach-point="panelCreate" style="display: block; height: 100%; width: 100%; display: none"></div>
+  <div data-dojo-attach-point="panelUpload" style="display: block; height: 100%; width: 100%; display: none"></div>
+</div>

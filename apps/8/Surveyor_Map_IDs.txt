@@ -1,0 +1,41 @@
+Surveyor map (9781f570cfee4c86aed41f7f663edd8f)
+
+
+assignments
+    https://cmcguirevm.esri.com/server/rest/services/survey/survey/FeatureServer/5
+
+    Assignments by Surveyor (516387ce83974beab2be07d5d4114fcc)
+    Assignments by Status (39bf3c9ecdf443e89cee424e270a094c)
+    Assignments (eea62a777cda414b9338327665664233)
+
+stations
+    https://cmcguirevm.esri.com/server/rest/services/survey/survey/FeatureServer/3
+    Station (5cd78421e59f441db217ff9450eeccf1)
+
+survey_points
+    https://cmcguirevm.esri.com/server/rest/services/survey/survey/FeatureServer/1
+    Survey Point (9163d7fb7eec44ff9cf320cf1bf677ec)
+
+survey_lines:
+    https://cmcguirevm.esri.com/server/rest/services/survey/survey/FeatureServer/2
+    Survey Line (ab88f9dca62e41d4ba076eaa1245dc31)
+    Orientation Line (11d809e9261c427e86071e6fa0676f31)
+    Backsight Line (083275bca0654452b137d98b1db0d287)
+    LOF (ff8b561547a7418bb7a3b3612c7151d7)
+
+Surveys
+    https://cmcguirevm.esri.com/server/rest/services/survey/survey/FeatureServer/0
+    Surveys (77c977a3882a46e8a501b0ce199a3d6e)
+
+test_sites
+    https://cmcguirevm.esri.com/server/rest/services/survey/survey/FeatureServer/6
+    Test Sites (3853578f5f714011b2bd2f72fbd98b79)
+
+orientation_sites
+    https://cmcguirevm.esri.com/server/rest/services/survey/survey/FeatureServer/4
+    orientation_sites (bc31a63fdc4f4e46bd45d8610c1d9788)
+	
+	
+App config.json
+1) search for "itemID"
+2) replace with "Surveyor" map id.

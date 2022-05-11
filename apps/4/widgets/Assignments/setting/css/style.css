@@ -1,0 +1,18 @@
+.jimu-widget-assignments-setting{
+  margin:0;
+  padding:0;
+  font-size:14px;
+  margin-top: 20px;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+
+.jimu-widget-assignments-setting .title {
+	font-weight: bold;
+}
+.jimu-widget-assignments-setting .section {
+	padding: 10px 0;
+}
