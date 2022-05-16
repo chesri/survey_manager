@@ -15,17 +15,36 @@ import xlrd, re
 from xlrd import open_workbook
 import configparser
 
+
 tool_path = os.path.dirname(sys.argv[0])
+results = []
 
 runfrom = os.path.basename(sys.executable)
 arcpy.AddMessage('Executable: ' + os.path.basename(sys.executable))
 
-arcpy.env.workspace = R"C:\Toolworkbench\survey_manager\custom\cmcguirevm.sde"
-surveys = arcpy.ListFeatureClasses("*surveys")
-survey_points = arcpy.ListFeatureClasses("*survey_points")
+arcpy.env.workspace = arcpy.GetParameter(4)
+if arcpy.env.workspace == None:
+    arcpy.env.workspace = R"C:\Users\chrism\Documents\ArcGIS\Projects\yuma_tool_publishing\cmcguirevm.sde"
+desc_ws = arcpy.Describe(arcpy.env.workspace)
+results.append(str(desc_ws.dataElementType))
 
-arcpy.MakeFeatureLayer_management('surveys','lyr_surveys')
-arcpy.MakeFeatureLayer_management('survey_points','lyr_survey_points')
+if len(arcpy.ListFeatureClasses("*surveys")) > 0:
+    surveys = arcpy.ListFeatureClasses("*surveys")[0]
+    surveys = os.path.join(arcpy.env.workspace,surveys)
+    arcpy.MakeFeatureLayer_management(surveys,'lyr_surveys')
+    #surveys = 'lyr_surveys'
+    results.append(f'surveys st to {surveys}')
+else:
+    arcpy.AddError(f"Exiting tool. Could not access {os.path.join(arcpy.env.workspace),'surveys'}")
+
+if len(arcpy.ListFeatureClasses("*survey_points")) > 0:
+    survey_points = arcpy.ListFeatureClasses("*survey_points")[0]
+    survey_points = os.path.join(arcpy.env.workspace,survey_points)
+    arcpy.MakeFeatureLayer_management(surveys,'lyr_survey_points')
+    #survey_points = 'lyr_survey_points'
+    results.append(f'survey_points st to {survey_points}')
+else:
+    arcpy.AddError(f"Exiting tool. Could not access {os.path.join(arcpy.env.workspace),'survey_points'}")
 
 def getID(in_table, in_field):
     ''' increment by number of 1 to the largest number value in the table's
@@ -113,7 +132,7 @@ def readSource(input_book):
             #
 
             data = []      # an empty list to collect the point data in.
-            point_pid = getID('lyr_survey_points','pt_uid')  # get the starting unique ID for the Points.
+            point_pid = getID(fc_points,'pt_uid')  # get the starting unique ID for the Points.
             
 
             headers = []   # collect a list of headers to determine if user is importing a file with extra columns
@@ -166,7 +185,7 @@ def readSource(input_book):
                     # write the new row of data to our data object with append method
                     data.append(point_data)
 
-                    arcpy.AddMessage(f"getPID returning ID {point_pid} for {'lyr_survey_points'}")
+                    arcpy.AddMessage(f"getPID returning ID {point_pid} for {fc_points}")
                     point_pid += 1
                 rowindex = rowindex + 1
 
@@ -240,7 +259,8 @@ class aSurvey:
 # Parameter 0: is the "Input Total Station File" or source file for the GPS data.
 # tool expects an Excel file.
 source = arcpy.GetParameterAsText(0)
-# source = R"C:\ToolWorkbench\yuma-range-survey\web_map_configuration\ArcGISPro_Projects\sample_data\GP15_PGM4_23APR2018.xls"
+if arcpy.GetParameterAsText(0) == None or arcpy.GetParameterAsText(0) == '':
+    source = R"C:\ToolWorkbench\yuma-range-survey\sample_data\GP15_PGM4_23APR2018.xls"
 
 # Parameter 1: Assignment ID captures an assignment number and includes it with
 #              the survey file to link an assignment with the resulting survey.
@@ -251,12 +271,12 @@ if assignment_id == '' or assignment_id == None:
 # Parameter 2 = Result messages (set at end with SetParameter)
 # Parameter 3 = zoom-to/output polygon (set at end with SetParameter)
 
-fc_surveys = 'lyr_surveys'
-fc_points  = 'lyr_survey_points'
+fc_surveys = surveys  # 'lyr_surveys'
+fc_points  = survey_points  # 'lyr_survey_points'
 
 #output_string = str("Workspace: {}".format(arcpy.env.workspace))
-output_string = str(f"fc_surveys: {fc_surveys}")
-output_string += str(f"fc_points: {fc_points}")
+results.append(str(f"fc_surveys: {fc_surveys}"))
+results.append(str(f"fc_points: {fc_points}"))
 
   # Set Tool Environment
 arcpy.env.overwriteOutput = True
@@ -280,7 +300,7 @@ try:
 
     point_fields = ["survey_fk", "pt_uid", "pt_type", "pt_name", "date_time", "ypg_x", "ypg_y", "wgs84_x", "wgs84_y", "gps_northing", "gps_easting", "gps_ortho_ht",  "gps_ellip_ht", "gps_cq3d","comments","SHAPE@"]
 
-    d_cursor =  arcpy.da.InsertCursor('lyr_survey_points',point_fields)
+    d_cursor =  arcpy.da.InsertCursor(fc_points,point_fields)
     for row in data:
         point = arcpy.Point(row[use_x],row[use_y])
         ptGeometry = arcpy.PointGeometry(point)
@@ -291,17 +311,17 @@ try:
         d_cursor.insertRow(r)
 
     del d_cursor
-    output_string += "; " +  "Survey Data added to tmp_survey."
+    results.append("; " +  "Survey Data added to tmp_survey.")
 
 except RuntimeError as e:
-    output_string += "; " + str(e)
+    results.append("; " + str(e))
     arcpy.AddMessage(output_string)
 except arcpy.ExecuteError as e:
-    output_string += "; " + arcpy.GetMessage(2)
-    output_string += "; " + str(e)
+    results.append("; " + arcpy.GetMessage(2))
+    results.append("; " + str(e))
     arcpy.AddMessage(output_string)
 except Exception as e:
-    output_string += "; Exception Error =" + str(e)
+    results.append("; Exception Error =" + str(e))
     arcpy.AddMessage(output_string)
 
 # #########################################
@@ -316,7 +336,7 @@ try:
     edit.startEditing(False, False)
     ### logger.info("\nInserting Survey record to {}".format(fc_surveys))
 
-    p_cursor =  arcpy.da.InsertCursor('lyr_surveys',the_survey.table_fields)
+    p_cursor =  arcpy.da.InsertCursor(fc_surveys,the_survey.table_fields)
 
     # add assignment ID if included as input parameter
     the_survey.assignment_fk = assignment_id if assignment_id else -1
@@ -329,19 +349,19 @@ try:
     del p_cursor
     ### logger.info("Survey polygon created. (id={})".format(the_survey.id))
     edit.stopEditing(True)
-    output_string += "; Survey polygon created."
+    results.append("; Survey polygon created.")
 except RuntimeError as e:
-    output_string += f"; RuntimeError when adding survey ({e})."
-    output_string += "survey_fields: {}".format(the_survey.table_fields)
+    results.append(f"; RuntimeError when adding survey ({e}).")
+    results.append("survey_fields: {}".format(the_survey.table_fields))
     ### logger.error("data: {}".format(r))
-    output_string += "; " + str(e)
+    results.append("; " + str(e))
 except arcpy.ExecuteError as e:
     ### logger.error("Failed adding survey data to temporary survey table. {}".format(e))
-    output_string += "; " + arcpy.GetMessage(2)
-    output_string += "; " + str(e)
+    results.append("; " + arcpy.GetMessage(2))
+    results.append("; " + str(e))
 except Exception as e:
     ### logger.error("{} ".format(e))
-    output_string += "; Exception Error =" + str(e)
+    results.append("; Exception Error =" + str(e))
 
 try:
     for wash in dirty_laundry:
@@ -350,15 +370,15 @@ try:
         del wash
 except:
     ### logger.error('Failed while cleaning up temporary files')
-    output_string += "; Failed while cleaning up temporary files."
+    results.append("; Failed while cleaning up temporary files.")
 
 ### logger.debug("Creating zoom-to polygon and passing back to Web Map.")
 expression = "{} = {}".format('survey_uid',the_survey.id)
 arcpy.AddMessage("Expression: {}".format(expression))
 #'layer = arcpy.management.MakeFeatureLayer(fc_surveys, 'lyr')
-rs = arcpy.SelectLayerByAttribute_management('lyr_surveys', "NEW_SELECTION", expression)
+rs = arcpy.SelectLayerByAttribute_management(fc_surveys, "NEW_SELECTION", expression)
 feature_set = arcpy.FeatureSet()
 feature_set.load(rs)
 
-arcpy.SetParameterAsText(2,output_string)
+arcpy.SetParameterAsText(2,results)
 arcpy.SetParameter(3,feature_set)

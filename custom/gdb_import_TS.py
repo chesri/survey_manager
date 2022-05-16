@@ -18,19 +18,56 @@ import math
 import configparser
 
 runfrom = os.path.basename(sys.executable)
+tool_path = os.path.dirname(__file__)
 
-arcpy.env.workspace = R"C:\Toolworkbench\survey_manager\custom\cmcguirevm.sde"
-surveys = arcpy.ListFeatureClasses("*surveys")
-survey_points = arcpy.ListFeatureClasses("*survey_points")
-stations = arcpy.ListFeatureClasses("*stations")
-survey_lines = arcpy.ListFeatureClasses("*survey_lines")
-orientation_sites = arcpy.ListFeatureClasses("*orientation_sites")
+arcpy.env.workspace = arcpy.GetParameter(4)
+if arcpy.env.workspace == None:
+    arcpy.env.workspace = os.path.join(tool_path, "cmcguirevm.sde")
+desc_ws = arcpy.Describe(arcpy.env.workspace)
 
-arcpy.MakeFeatureLayer_management('surveys','lyr_surveys')
-arcpy.MakeFeatureLayer_management('survey_points','lyr_survey_points')
-arcpy.MakeFeatureLayer_management('stations','lyr_stations')
-arcpy.MakeFeatureLayer_management('survey_lines','lyr_survey_lines')
-arcpy.MakeFeatureLayer_management('orientation_sites','lyr_orientation_sites')
+if not os.path.exists(arcpy.env.workspace):
+    arcpy.AddError(f'workspace does not exists: {arcpy.env.workspace}')
+    exit()
+
+if len(arcpy.ListFeatureClasses("*surveys")) > 0:
+    surveys = arcpy.ListFeatureClasses("*surveys")[0]
+    surveys = os.path.join(arcpy.env.workspace,surveys)
+    arcpy.MakeFeatureLayer_management(surveys,'lyr_surveys')
+    #surveys = 'lyr_surveys'
+else:
+    arcpy.AddError(f"Exiting tool. Could not access {os.path.join(arcpy.env.workspace),'surveys'}")
+
+if len(arcpy.ListFeatureClasses("*survey_points")) > 0:
+    survey_points = arcpy.ListFeatureClasses("*survey_points")[0]
+    survey_points = os.path.join(arcpy.env.workspace,survey_points)
+    arcpy.MakeFeatureLayer_management(surveys,'lyr_survey_points')
+    #survey_points = 'lyr_survey_points'
+else:
+    arcpy.AddError(f"Exiting tool. Could not access {os.path.join(arcpy.env.workspace),'survey_points'}")
+
+if len(arcpy.ListFeatureClasses("*stations")) > 0:
+    stations = arcpy.ListFeatureClasses("*stations")[0]
+    stations = os.path.join(arcpy.env.workspace,stations)
+    arcpy.MakeFeatureLayer_management(surveys,'lyr_stations')
+    #stations = 'lyr_stations'
+else:
+    arcpy.AddError(f"Exiting tool. Could not access {os.path.join(arcpy.env.workspace),'lyr_stations'}")
+
+if len(arcpy.ListFeatureClasses("*survey_lines")) > 0:
+    survey_lines = arcpy.ListFeatureClasses("*survey_lines")[0]
+    survey_lines = os.path.join(arcpy.env.workspace,survey_lines)
+    arcpy.MakeFeatureLayer_management(surveys,'lyr_survey_lines')
+    #survey_lines = 'lyr_survey_lines'
+else:
+    arcpy.AddError(f"Exiting tool. Could not access {os.path.join(arcpy.env.workspace),'lyr_survey_lines'}")
+
+if len(arcpy.ListFeatureClasses("*orientation_sites")) > 0:
+    orientation_sites = arcpy.ListFeatureClasses("*orientation_sites")[0]
+    orientation_sites = os.path.join(arcpy.env.workspace,orientation_sites)
+    arcpy.MakeFeatureLayer_management(orientation_sites,'lyr_orientation_sites')
+    orientation_sites = 'lyr_orientation_sites'
+else:
+    arcpy.AddError(f"Exiting tool. Could not access {os.path.join(arcpy.env.workspace),'lyr_orientation_sites'}")
 
 def formatDateTime(in_date,in_time):
     r_date = datetime.datetime(int(in_date.split("/")[2]),int(in_date.split("/")[0]),int(in_date.split("/")[1]),int(in_time.split(":")[0]),int(in_time.split(":")[1]),int(in_time.split(":")[2]))
@@ -589,6 +626,7 @@ class aSurveyLine:
         del cursor
 
         # use the table data to generate the arc
+        #arcpy.management.BearingDistanceToLine(in_table, out_featureclass, x_field, y_field, distance_field, {distance_units}, bearing_field, {bearing_units}, {line_type}, {id_field}, {spatial_reference}, {attributes})
         arcpy.BearingDistanceToLine_management(tmp, outFC, 'ypg_x', 'ypg_y', 'distance', 'METERS', 'bearing', 'DEGREES', 'GEODESIC', '', self.sr)
 
         # get line data and put in polyline object

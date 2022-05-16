@@ -59,7 +59,7 @@ def deleteFeatures(layer,field,uids):
 # ##############################################################################
 # START
 
-arcpy.env.workspace = R"C:\Toolworkbench\survey_manager\custom\cmcguirevm.sde"
+arcpy.env.workspace = R"\\ypgrw04xaaa0h57\\arcgisserver\\SurveyReports\\Geodetics.sde"
 surveys = arcpy.ListFeatureClasses("*surveys")
 survey_points = arcpy.ListFeatureClasses("*survey_points")
 stations = arcpy.ListFeatureClasses("*stations")

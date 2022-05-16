@@ -16,6 +16,68 @@ import xlsxwriter, uuid
 import configparser
 
 tool_home = os.path.dirname(__file__)
+results = []
+
+arcpy.env.workspace = arcpy.GetParameter(3)
+if arcpy.env.workspace == None:
+    arcpy.env.workspace = R"C:\Users\chrism\Documents\ArcGIS\Projects\yuma_tool_publishing\cmcguirevm.sde"
+desc_ws = arcpy.Describe(arcpy.env.workspace)
+
+if os.path.exists(arcpy.env.workspace):
+    results.append(f'workspace_type: {arcpy.Describe(arcpy.env.workspace).workspaceType}')
+else:
+    results.append(f"{arcpy.env.workspace} not found.")
+
+if len(arcpy.ListFeatureClasses("*surveys")) > 0:
+    surveys = arcpy.ListFeatureClasses("*surveys")[0]
+    surveys = os.path.join(arcpy.env.workspace,surveys)
+    arcpy.MakeFeatureLayer_management(surveys,'lyr_surveys')
+    #surveys = 'lyr_surveys'
+    results.append(f'surveys st to {surveys}')
+else:
+    arcpy.AddError(f"Exiting tool. Could not access {os.path.join(arcpy.env.workspace),'surveys'}")
+
+if len(arcpy.ListFeatureClasses("*survey_points")) > 0:
+    survey_points = arcpy.ListFeatureClasses("*survey_points")[0]
+    survey_points = os.path.join(arcpy.env.workspace,survey_points)
+    arcpy.MakeFeatureLayer_management(surveys,'lyr_survey_points')
+    #survey_points = 'lyr_survey_points'
+    results.append(f'survey_points st to {survey_points}')
+else:
+    arcpy.AddError(f"Exiting tool. Could not access {os.path.join(arcpy.env.workspace),'survey_points'}")
+
+if len(arcpy.ListFeatureClasses("*stations")) > 0:
+    stations = arcpy.ListFeatureClasses("*stations")[0]
+    stations = os.path.join(arcpy.env.workspace,stations)
+    arcpy.MakeFeatureLayer_management(surveys,'lyr_stations')
+    #stations = 'lyr_stations'
+    results.append(f'stations st to {stations}')
+else:
+    arcpy.AddError(f"Exiting tool. Could not access {os.path.join(arcpy.env.workspace),'lyr_stations'}")
+
+if len(arcpy.ListFeatureClasses("*survey_lines")) > 0:
+    survey_lines = arcpy.ListFeatureClasses("*survey_lines")[0]
+    survey_lines = os.path.join(arcpy.env.workspace,survey_lines)
+    arcpy.MakeFeatureLayer_management(surveys,'lyr_survey_lines')
+    #survey_lines = 'lyr_survey_lines'
+else:
+    arcpy.AddError(f"Exiting tool. Could not access {os.path.join(arcpy.env.workspace),'lyr_survey_lines'}")
+
+if len(arcpy.ListFeatureClasses("*orientation_sites")) > 0:
+    orientation_sites = arcpy.ListFeatureClasses("*orientation_sites")[0]
+    orientation_sites = os.path.join(arcpy.env.workspace,orientation_sites)
+    arcpy.MakeFeatureLayer_management(orientation_sites,'lyr_orientation_sites')
+    orientation_sites = 'lyr_orientation_sites'
+else:
+    arcpy.AddError(f"Exiting tool. Could not access {os.path.join(arcpy.env.workspace),'lyr_orientation_sites'}")
+
+
+print_map           = os.path.join(tool_home,"printed_map.aprx")
+
+# Signature image - not a requirement but put this here as a placeholder.
+signature_path       = R"C:\Toolworkbench\survey_manager\custom\signatures"
+yuma_logo_image = os.path.join(tool_home, 'ytc_small.png')
+signatures_dict = {'Chris McGuire':'signature_cmcguire.png','':'signature_somebody_signature.PNG'}
 
 class aSurvey:
 
@@ -221,8 +283,8 @@ def writeQAQC(the_survey, review_status_idx, reviewer_idx, review_date_idx):
 # ##############################################################################
 
 run_uuid = uuid.uuid1()
-survey_id = 7
-results = []
+survey_id = 12
+
 
 # Parameter 0 - the PROJECT_UID
 if os.path.basename(sys.executable) in ['ArcGISPro.exe', 'ArcSOC.exe']:
@@ -246,30 +308,14 @@ arcpy.AddMessage(string)
 # Open Excel Object.
 myXLS = xlsxwriter.Workbook(output)
 
-arcpy.env.workspace = R"C:\Toolworkbench\survey_manager\custom\cmcguirevm.sde"
+
 # surveys = arcpy.ListFeatureClasses("*surveys")
 # survey_points = arcpy.ListFeatureClasses("*survey_points")
 # stations = arcpy.ListFeatureClasses("*stations")
 # survey_lines = arcpy.ListFeatureClasses("*survey_lines")
 # orientation_sites = arcpy.ListFeatureClasses("*orientation_sites")
 
-arcpy.MakeFeatureLayer_management('surveys','lyr_surveys')
-surveys = 'lyr_surveys'
-arcpy.MakeFeatureLayer_management('survey_points','lyr_survey_points')
-survey_points = 'lyr_survey_points'
-arcpy.MakeFeatureLayer_management('stations','lyr_stations')
-stations = 'lyr_stations'
-arcpy.MakeFeatureLayer_management('survey_lines','lyr_survey_lines')
-survey_lines = 'lyr_survey_lines'
-arcpy.MakeFeatureLayer_management('orientation_sites','lyr_orientation_sites')
-orientation_sites = 'lyr_orientation_sites'
 
-print_map           = R"C:\Toolworkbench\survey_manager\custom\printed_map.aprx"
-
-# Signature image - not a requirement but put this here as a placeholder.
-signature_path       = R"C:\Toolworkbench\survey_manager\custom\signatures"
-yuma_logo_image = os.path.join(tool_home, 'ytc_small.png')
-signatures_dict = {'Chris McGuire':'signature_cmcguire.png','':'signature_somebody_signature.PNG'}
 
 
 if os.path.exists(print_map):
@@ -358,8 +404,12 @@ elif survey.data[5] != 'GPS':
     # fetch Station Information
     stations_list = []
     expression = "{} = {}".format('survey_fk',survey_id)
-    s_cursor =  arcpy.da.SearchCursor(stations,['st_uid','st_name','st_x','st_y','st_z','st_hi'],where_clause=expression)
-
+    try:
+        s_cursor =  arcpy.da.SearchCursor(stations,['st_uid','st_name','st_x','st_y','st_z','st_hi'],where_clause=expression)
+    except:
+        results.append(f"arcpy.da.SearchCursor({stations},['st_uid','st_name','st_x','st_y','st_z','st_hi'],where_clause={expression})")
+        arcpy.SetParameter(1,results)
+        
     # Loop through each station via CURSOR rows
     for row in s_cursor:
         stations_list = []
