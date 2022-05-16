@@ -20,7 +20,7 @@ results = []
 
 arcpy.env.workspace = arcpy.GetParameter(3)
 if arcpy.env.workspace == None:
-    arcpy.env.workspace = R"C:\Users\chrism\Documents\ArcGIS\Projects\yuma_tool_publishing\cmcguirevm.sde"
+    arcpy.env.workspace = os.path.join(tool_home,"cmcguirevm.sde")
 desc_ws = arcpy.Describe(arcpy.env.workspace)
 
 if os.path.exists(arcpy.env.workspace):

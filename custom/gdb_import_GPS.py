@@ -24,7 +24,7 @@ arcpy.AddMessage('Executable: ' + os.path.basename(sys.executable))
 
 arcpy.env.workspace = arcpy.GetParameter(4)
 if arcpy.env.workspace == None:
-    arcpy.env.workspace = R"C:\Users\chrism\Documents\ArcGIS\Projects\yuma_tool_publishing\cmcguirevm.sde"
+    arcpy.env.workspace = os.path.join(tool_path, "cmcguirevm.sde")
 desc_ws = arcpy.Describe(arcpy.env.workspace)
 results.append(str(desc_ws.dataElementType))
 
