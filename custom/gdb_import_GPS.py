@@ -24,27 +24,40 @@ arcpy.AddMessage('Executable: ' + os.path.basename(sys.executable))
 
 arcpy.env.workspace = arcpy.GetParameter(4)
 if arcpy.env.workspace == None:
-    arcpy.env.workspace = R"C:\Users\chrism\Documents\ArcGIS\Projects\yuma_tool_publishing\cmcguirevm.sde"
-desc_ws = arcpy.Describe(arcpy.env.workspace)
-results.append(str(desc_ws.dataElementType))
+    #arcpy.env.workspace = os.path.join(tool_path,"cmcguirevm.sde")
+    arcpy.env.workspace = R"\\ypgrw04xaaa0h57\arcgisserver\SurveyReports\Geodetics.sde"
+
+if arcpy.Exists(arcpy.env.workspace):
+    desc_ws = arcpy.Describe(arcpy.env.workspace)
+
+    if desc_ws.dataElementType == 'DEWorkspace':
+        results.append('workspace_type: {}'.format(desc_ws.workspaceType))
+    elif desc_ws.dataElementType == 'DEFile':
+        results.append('workspace_type: {}'.format(desc_ws.dataElementType))
+        arcpy.AddError("Unable to read {} as a DEWorkspace".format(desc_ws.name))
+else:
+    results.append("{} not found.".format(arcpy.env.workspace))
+    arcpy.SetParameter(1,results) # string messages
+    arcpy.AddError("Unable to read Workspace input.")
+    exit()
 
 if len(arcpy.ListFeatureClasses("*surveys")) > 0:
     surveys = arcpy.ListFeatureClasses("*surveys")[0]
     surveys = os.path.join(arcpy.env.workspace,surveys)
     arcpy.MakeFeatureLayer_management(surveys,'lyr_surveys')
     #surveys = 'lyr_surveys'
-    results.append(f'surveys st to {surveys}')
+    results.append('surveys st to {}'.format(surveys))
 else:
-    arcpy.AddError(f"Exiting tool. Could not access {os.path.join(arcpy.env.workspace),'surveys'}")
+    arcpy.AddError("Exiting tool. Could not access {}".format(os.path.join(arcpy.env.workspace,'surveys')))
 
 if len(arcpy.ListFeatureClasses("*survey_points")) > 0:
     survey_points = arcpy.ListFeatureClasses("*survey_points")[0]
     survey_points = os.path.join(arcpy.env.workspace,survey_points)
-    arcpy.MakeFeatureLayer_management(surveys,'lyr_survey_points')
+    arcpy.MakeFeatureLayer_management(survey_points,'lyr_survey_points')
     #survey_points = 'lyr_survey_points'
-    results.append(f'survey_points st to {survey_points}')
+    results.append('survey_points st to {}'.format(survey_points))
 else:
-    arcpy.AddError(f"Exiting tool. Could not access {os.path.join(arcpy.env.workspace),'survey_points'}")
+    arcpy.AddError("Exiting tool. Could not access {}".format(os.path.join(arcpy.env.workspace,'survey_points')))
 
 def getID(in_table, in_field):
     ''' increment by number of 1 to the largest number value in the table's
@@ -124,7 +137,7 @@ def readSource(input_book):
                 addl_contacts = sheet.row(7)[sheet.ncols - 1].value + '; ' + sheet.row(8)[sheet.ncols - 1].value + '; ' + sheet.row(9)[sheet.ncols - 1].value + '; ' + sheet.row(10)[sheet.ncols - 1].value
 
             surveyID = getID(fc_surveys,'survey_uid')
-            arcpy.AddMessage(f"getPID returning ID {surveyID} for {fc_surveys}")
+            arcpy.AddMessage("getPID returning ID {} for {}".format(surveyID,fc_surveys))
             survey_info = (surveyID, project, title, classification, site, poc, date, survey_crew, grid, unit, source_file, source_status, addl_contacts)
 
             #
@@ -185,7 +198,7 @@ def readSource(input_book):
                     # write the new row of data to our data object with append method
                     data.append(point_data)
 
-                    arcpy.AddMessage(f"getPID returning ID {point_pid} for {fc_points}")
+                    arcpy.AddMessage("getPID returning ID {} for {}".format(point_pid,fc_points))
                     point_pid += 1
                 rowindex = rowindex + 1
 
@@ -275,8 +288,8 @@ fc_surveys = surveys  # 'lyr_surveys'
 fc_points  = survey_points  # 'lyr_survey_points'
 
 #output_string = str("Workspace: {}".format(arcpy.env.workspace))
-results.append(str(f"fc_surveys: {fc_surveys}"))
-results.append(str(f"fc_points: {fc_points}"))
+results.append(str("fc_surveys: {}").format(fc_surveys))
+results.append(str("fc_points: {}").format(fc_points))
 
   # Set Tool Environment
 arcpy.env.overwriteOutput = True
@@ -351,7 +364,7 @@ try:
     edit.stopEditing(True)
     results.append("; Survey polygon created.")
 except RuntimeError as e:
-    results.append(f"; RuntimeError when adding survey ({e}).")
+    results.append("; RuntimeError when adding survey ({}).".format(e))
     results.append("survey_fields: {}".format(the_survey.table_fields))
     ### logger.error("data: {}".format(r))
     results.append("; " + str(e))

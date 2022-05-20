@@ -20,48 +20,57 @@ results = []
 
 arcpy.env.workspace = arcpy.GetParameter(3)
 if arcpy.env.workspace == None:
-    arcpy.env.workspace = R"C:\Users\chrism\Documents\ArcGIS\Projects\yuma_tool_publishing\cmcguirevm.sde"
-desc_ws = arcpy.Describe(arcpy.env.workspace)
+    #arcpy.env.workspace = os.path.join(tool_home,"cmcguirevm.sde")
+    arcpy.env.workspace = R"\\ypgrw04xaaa0h57\arcgisserver\SurveyReports\Geodetics.sde"
+    
+if arcpy.Exists(arcpy.env.workspace):
+    desc_ws = arcpy.Describe(arcpy.env.workspace)
 
-if os.path.exists(arcpy.env.workspace):
-    results.append(f'workspace_type: {arcpy.Describe(arcpy.env.workspace).workspaceType}')
+    if desc_ws.dataElementType == 'DEWorkspace':
+        results.append('workspace_type: {}'.format(desc_ws.workspaceType))
+    elif desc_ws.dataElementType == 'DEFile':
+        results.append('workspace_type: {}'.format(desc_ws.dataElementType))
+        arcpy.AddError("Unable to read {} as a DEWorkspace".format(desc_ws.name))
 else:
-    results.append(f"{arcpy.env.workspace} not found.")
+    results.append("{} not found.".format(arcpy.env.workspace))
+    arcpy.SetParameter(1,results) # string messages
+    arcpy.AddError("Unable to read Workspace input.")
+    exit()
 
 if len(arcpy.ListFeatureClasses("*surveys")) > 0:
     surveys = arcpy.ListFeatureClasses("*surveys")[0]
     surveys = os.path.join(arcpy.env.workspace,surveys)
     arcpy.MakeFeatureLayer_management(surveys,'lyr_surveys')
     #surveys = 'lyr_surveys'
-    results.append(f'surveys st to {surveys}')
+    results.append('surveys st to {}'.format(surveys))
 else:
-    arcpy.AddError(f"Exiting tool. Could not access {os.path.join(arcpy.env.workspace),'surveys'}")
+    arcpy.AddError("Exiting tool. Could not access {}".format(os.path.join(arcpy.env.workspace,'surveys')))
 
 if len(arcpy.ListFeatureClasses("*survey_points")) > 0:
     survey_points = arcpy.ListFeatureClasses("*survey_points")[0]
     survey_points = os.path.join(arcpy.env.workspace,survey_points)
-    arcpy.MakeFeatureLayer_management(surveys,'lyr_survey_points')
+    arcpy.MakeFeatureLayer_management(survey_points,'lyr_survey_points')
     #survey_points = 'lyr_survey_points'
-    results.append(f'survey_points st to {survey_points}')
+    results.append('survey_points st to {}'.format(survey_points))
 else:
-    arcpy.AddError(f"Exiting tool. Could not access {os.path.join(arcpy.env.workspace),'survey_points'}")
+    arcpy.AddError("Exiting tool. Could not access {}".format(os.path.join(arcpy.env.workspace,'survey_points')))
 
 if len(arcpy.ListFeatureClasses("*stations")) > 0:
     stations = arcpy.ListFeatureClasses("*stations")[0]
     stations = os.path.join(arcpy.env.workspace,stations)
-    arcpy.MakeFeatureLayer_management(surveys,'lyr_stations')
+    arcpy.MakeFeatureLayer_management(stations,'lyr_stations')
     #stations = 'lyr_stations'
-    results.append(f'stations st to {stations}')
+    results.append('stations st to {}'.format(stations))
 else:
-    arcpy.AddError(f"Exiting tool. Could not access {os.path.join(arcpy.env.workspace),'lyr_stations'}")
+    arcpy.AddError("Exiting tool. Could not access {}".format(os.path.join(arcpy.env.workspace,'stations')))
 
 if len(arcpy.ListFeatureClasses("*survey_lines")) > 0:
     survey_lines = arcpy.ListFeatureClasses("*survey_lines")[0]
     survey_lines = os.path.join(arcpy.env.workspace,survey_lines)
-    arcpy.MakeFeatureLayer_management(surveys,'lyr_survey_lines')
+    arcpy.MakeFeatureLayer_management(survey_lines,'lyr_survey_lines')
     #survey_lines = 'lyr_survey_lines'
 else:
-    arcpy.AddError(f"Exiting tool. Could not access {os.path.join(arcpy.env.workspace),'lyr_survey_lines'}")
+    arcpy.AddError("Exiting tool. Could not access {}".format(os.path.join(arcpy.env.workspace,'survey_lines')))
 
 if len(arcpy.ListFeatureClasses("*orientation_sites")) > 0:
     orientation_sites = arcpy.ListFeatureClasses("*orientation_sites")[0]
@@ -69,13 +78,12 @@ if len(arcpy.ListFeatureClasses("*orientation_sites")) > 0:
     arcpy.MakeFeatureLayer_management(orientation_sites,'lyr_orientation_sites')
     orientation_sites = 'lyr_orientation_sites'
 else:
-    arcpy.AddError(f"Exiting tool. Could not access {os.path.join(arcpy.env.workspace),'lyr_orientation_sites'}")
+     arcpy.AddError("Exiting tool. Could not access {}".format(os.path.join(arcpy.env.workspace,'orientation_sites')))
 
-
-print_map           = os.path.join(tool_home,"printed_map.aprx")
+print_map           = R"\\cmcguirevm\custom\printed_map.aprx"
 
 # Signature image - not a requirement but put this here as a placeholder.
-signature_path       = R"C:\Toolworkbench\survey_manager\custom\signatures"
+signature_path       = R"\\cmcguirevm\custom\signatures"
 yuma_logo_image = os.path.join(tool_home, 'ytc_small.png')
 signatures_dict = {'Chris McGuire':'signature_cmcguire.png','':'signature_somebody_signature.PNG'}
 
@@ -289,25 +297,24 @@ survey_id = 12
 # Parameter 0 - the PROJECT_UID
 if os.path.basename(sys.executable) in ['ArcGISPro.exe', 'ArcSOC.exe']:
     survey_id = arcpy.GetParameter(0) if arcpy.GetParameter(0) != '' or arcpy.GetParameter(0) != None else 2
-    results.append(f"Executable: {os.path.basename(sys.executable)}")
-    results.append(f"Processing Project UID: {survey_id}")
+    results.append("Executable: {}".format(os.path.basename(sys.executable)))
+    results.append("Processing Project UID: {}".format(survey_id))
 
 # Parameter 1 - output message - collect info during run and send it at end. 
 # loading strings into the results list to return.
 
 # set-up space to create dependency items (map png, Pro project, and output)
 scratchFolder = arcpy.env.scratchFolder
-arcpy.AddMessage(f"Creating scratch folder at: {scratchFolder}")
-results.append(f"Creating scratch folder at: {scratchFolder}")
+arcpy.AddMessage("Creating scratch folder at: {}".format(scratchFolder))
+results.append("Creating scratch folder at: {}".format(scratchFolder))
 
 # Parameter 2 is OUTPUT File - written at end with SetParameter
 output = os.path.join(scratchFolder, f"export_{survey_id}.xlsx")
-string = f"output filename: {pathlib.Path(output)}"
+string = "output filename: {}".format(pathlib.Path(output))
 arcpy.AddMessage(string)
 
 # Open Excel Object.
 myXLS = xlsxwriter.Workbook(output)
-
 
 # surveys = arcpy.ListFeatureClasses("*surveys")
 # survey_points = arcpy.ListFeatureClasses("*survey_points")
@@ -315,16 +322,13 @@ myXLS = xlsxwriter.Workbook(output)
 # survey_lines = arcpy.ListFeatureClasses("*survey_lines")
 # orientation_sites = arcpy.ListFeatureClasses("*orientation_sites")
 
-
-
-
 if os.path.exists(print_map):
     aprx = arcpy.mp.ArcGISProject(print_map)
 elif os.path.exists(os.path.join(tool_home, "printed_map.aprx")):
     aprx = arcpy.mp.ArcGISProject(os.path.join(tool_home, "printed_map.aprx"))
 else:
     aprx = None
-arcpy.AddMessage(f"Using ArcGIS Pro project {aprx.filePath} for survey map.")
+arcpy.AddMessage("Using ArcGIS Pro project {} for survey map.".format(aprx.filePath))
 
 
 # Grab the survey information via the aSurvey class object and a SearchCursor
@@ -392,7 +396,7 @@ if survey.data[5] == 'GPS':
     last_row = writeTable('POINT',last_row,pts.fieldaliases,points_list)
     results.append("\nWriting GPS points to Excel.")
 
-    sheet_a.write(4,13, "no Map for GPS")
+    # sheet_a.write(4,13, "no Map for GPS")
 
 elif survey.data[5] != 'GPS':
 
@@ -407,7 +411,7 @@ elif survey.data[5] != 'GPS':
     try:
         s_cursor =  arcpy.da.SearchCursor(stations,['st_uid','st_name','st_x','st_y','st_z','st_hi'],where_clause=expression)
     except:
-        results.append(f"arcpy.da.SearchCursor({stations},['st_uid','st_name','st_x','st_y','st_z','st_hi'],where_clause={expression})")
+        results.append("arcpy.da.SearchCursor({},['st_uid','st_name','st_x','st_y','st_z','st_hi'],where_clause={})".format(stations,expression))
         arcpy.SetParameter(1,results)
         
     # Loop through each station via CURSOR rows
@@ -487,7 +491,7 @@ elif survey.data[5] != 'GPS':
 
         aprx_name = os.path.join(scratchFolder, f"APrj_{run_uuid}")
         aprx.saveACopy(aprx_name)
-        arcpy.AddMessage(f"\nSaved {aprx_name}")
+        arcpy.AddMessage("\nSaved {}".format(aprx_name))
 
         expression = "survey_uid = {}".format(survey_id)
         arcpy.SelectLayerByAttribute_management(in_layer_or_view=lyr_surveys, selection_type="NEW_SELECTION", where_clause=expression)
@@ -510,7 +514,7 @@ elif survey.data[5] != 'GPS':
         # This will ensure a unique output name
         Output_File = 'WebMap_{}.png'.format(str(run_uuid))
         Output_File = os.path.join(scratchFolder, Output_File)
-        arcpy.AddMessage(f"Creating temporary PNG file: {Output_File}")
+        arcpy.AddMessage("Creating temporary PNG file: {}".format(Output_File))
 
         #aprx.saveACopy(os.path.join(scratchFolder, f"APrj_{run_uuid}"))
 
@@ -550,7 +554,7 @@ elif survey.data[5] != 'GPS':
         sheet_a.conditional_format(first_row + 1,first_col + cols_count - 1, first_row + rows_count - 2, first_col + cols_count - 1, {'type': 'formula', 'criteria': 'True', 'format': myXLS.add_format({'right': thickness})})
 
     else:
-        arcpy.AddWarning(f"No ArcGIS Pro project found at {aprx.filePath}. Map will not be included in report.")
+        arcpy.AddWarning("No ArcGIS Pro project found at {}. Map will not be included in report.".format(aprx.filePath))
 
 # Add QA/QC markings: Approval Status, Approver Name, Approved Date
 
@@ -568,7 +572,7 @@ results.append("\nWriting QA/QC status to Excel.")
 
 myXLS.close()
 results.append("\nClosing and delivering Excel to widget.")
-results.append(f"output: {output}")
+results.append("output: {}".format(output))
 
 notes = open(os.path.join(scratchFolder,f"Notes_{run_uuid}.txt"), "w")
 for line in results:

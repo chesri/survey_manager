@@ -19,47 +19,61 @@ import configparser
 
 runfrom = os.path.basename(sys.executable)
 tool_path = os.path.dirname(__file__)
+results = []
 
 arcpy.env.workspace = arcpy.GetParameter(4)
 if arcpy.env.workspace == None:
-    arcpy.env.workspace = os.path.join(tool_path, "cmcguirevm.sde")
-desc_ws = arcpy.Describe(arcpy.env.workspace)
+    #arcpy.env.workspace = os.path.join(tool_path,"cmcguirevm.sde")
+    arcpy.env.workspace = R"\\ypgrw04xaaa0h57\arcgisserver\SurveyReports\Geodetics.sde"
 
-if not os.path.exists(arcpy.env.workspace):
-    arcpy.AddError(f'workspace does not exists: {arcpy.env.workspace}')
+if arcpy.Exists(arcpy.env.workspace):
+    desc_ws = arcpy.Describe(arcpy.env.workspace)
+
+    if desc_ws.dataElementType == 'DEWorkspace':
+        results.append('workspace_type: {}'.format(desc_ws.workspaceType))
+    elif desc_ws.dataElementType == 'DEFile':
+        results.append('workspace_type: {}'.format(desc_ws.dataElementType))
+        arcpy.AddError("Unable to read {} as a DEWorkspace".format(desc_ws.name))
+else:
+    results.append("{} not found.".format(arcpy.env.workspace))
+    arcpy.SetParameter(1,results) # string messages
+    arcpy.AddError("Unable to read Workspace input.")
     exit()
+
+if len(arcpy.ListFeatureClasses()) == 0:
+    arcpy.AddError("Can't find feature classes in workspace: {}".format(arcpy.env.workspace))
 
 if len(arcpy.ListFeatureClasses("*surveys")) > 0:
     surveys = arcpy.ListFeatureClasses("*surveys")[0]
     surveys = os.path.join(arcpy.env.workspace,surveys)
     arcpy.MakeFeatureLayer_management(surveys,'lyr_surveys')
-    #surveys = 'lyr_surveys'
+    surveys = 'lyr_surveys'
 else:
-    arcpy.AddError(f"Exiting tool. Could not access {os.path.join(arcpy.env.workspace),'surveys'}")
+    arcpy.AddError("Exiting tool. Could not access {}".format(os.path.join(arcpy.env.workspace,'surveys')))
 
 if len(arcpy.ListFeatureClasses("*survey_points")) > 0:
     survey_points = arcpy.ListFeatureClasses("*survey_points")[0]
     survey_points = os.path.join(arcpy.env.workspace,survey_points)
-    arcpy.MakeFeatureLayer_management(surveys,'lyr_survey_points')
-    #survey_points = 'lyr_survey_points'
+    arcpy.MakeFeatureLayer_management(survey_points,'lyr_survey_points')
+    survey_points = 'lyr_survey_points'
 else:
-    arcpy.AddError(f"Exiting tool. Could not access {os.path.join(arcpy.env.workspace),'survey_points'}")
+    arcpy.AddError("Exiting tool. Could not access {}".format(os.path.join(arcpy.env.workspace,'survey_points')))
 
 if len(arcpy.ListFeatureClasses("*stations")) > 0:
     stations = arcpy.ListFeatureClasses("*stations")[0]
     stations = os.path.join(arcpy.env.workspace,stations)
-    arcpy.MakeFeatureLayer_management(surveys,'lyr_stations')
-    #stations = 'lyr_stations'
+    arcpy.MakeFeatureLayer_management(stations,'lyr_stations')
+    stations = 'lyr_stations'
 else:
-    arcpy.AddError(f"Exiting tool. Could not access {os.path.join(arcpy.env.workspace),'lyr_stations'}")
+    arcpy.AddError("Exiting tool. Could not access {}".format(os.path.join(arcpy.env.workspace,'lyr_stations')))
 
 if len(arcpy.ListFeatureClasses("*survey_lines")) > 0:
     survey_lines = arcpy.ListFeatureClasses("*survey_lines")[0]
     survey_lines = os.path.join(arcpy.env.workspace,survey_lines)
-    arcpy.MakeFeatureLayer_management(surveys,'lyr_survey_lines')
-    #survey_lines = 'lyr_survey_lines'
+    arcpy.MakeFeatureLayer_management(survey_lines,'lyr_survey_lines')
+    survey_lines = 'lyr_survey_lines'
 else:
-    arcpy.AddError(f"Exiting tool. Could not access {os.path.join(arcpy.env.workspace),'lyr_survey_lines'}")
+    arcpy.AddError("Exiting tool. Could not access {}".format(os.path.join(arcpy.env.workspace,'lyr_survey_lines')))
 
 if len(arcpy.ListFeatureClasses("*orientation_sites")) > 0:
     orientation_sites = arcpy.ListFeatureClasses("*orientation_sites")[0]
@@ -67,7 +81,7 @@ if len(arcpy.ListFeatureClasses("*orientation_sites")) > 0:
     arcpy.MakeFeatureLayer_management(orientation_sites,'lyr_orientation_sites')
     orientation_sites = 'lyr_orientation_sites'
 else:
-    arcpy.AddError(f"Exiting tool. Could not access {os.path.join(arcpy.env.workspace),'lyr_orientation_sites'}")
+    arcpy.AddError("Exiting tool. Could not access {}".format(os.path.join(arcpy.env.workspace,'lyr_orientation_sites')))
 
 def formatDateTime(in_date,in_time):
     r_date = datetime.datetime(int(in_date.split("/")[2]),int(in_date.split("/")[0]),int(in_date.split("/")[1]),int(in_time.split(":")[0]),int(in_time.split(":")[1]),int(in_time.split(":")[2]))
@@ -302,7 +316,7 @@ class aSurvey:
         arcpy.AddMessage("----------")
         arcpy.AddMessage("getting ID from {} {}".format(self.source_fc,'survey_uid'))
         self.id              = getID(self.source_fc,'survey_uid')
-        arcpy.AddMessage(f"getPID returning ID {self.id} for table {self.source_fc}")
+        arcpy.AddMessage("getPID returning ID {} for table {}".format(self.id,self.source_fc))
 
         self.name            = source['Program'].strip() + '-' + source['Site'].strip()
         arcpy.AddMessage('Instantiating {} {} (id={})'.format(self.__class__.__name__,self.name,self.id))
@@ -413,7 +427,7 @@ class aStation:
 
     def __init__(self,aname,read_x,read_y,read_z,read_hi):
         self.id = getID(self.source_fc,'st_uid') + aStation.count
-        arcpy.AddMessage(f"getPID returning ID {self.id} for table {self.source_fc}")
+        arcpy.AddMessage("getPID returning ID {} for table {}".format(self.id,self.source_fc))
         self.name = aname
         arcpy.AddMessage('Importing {} {} (id={})'.format(self.__class__.__name__,self.name,self.id))
         self.x = float(read_x.strip())
@@ -690,7 +704,7 @@ class aSurveyPoint:
 
     def __init__(self,aname,ha, hd, vd, ht, edm_type, edm_mode, prism_type, prism_const, adate, read_x, read_y, read_z, astation=None,pttype='survey_point'):
         self.id = getID(self.source_fc,'pt_uid') + aSurveyPoint.count
-        arcpy.AddMessage(f"getPID returning ID {self.id} for table {self.source_fc}")
+        arcpy.AddMessage("getPID returning ID {} for table {}".format(self.id,self.source_fc))
         self.name = aname
         self.ha = ha
         self.hd = hd
@@ -821,9 +835,9 @@ class startHere:
 ts_file = arcpy.GetParameterAsText(0)
 if os.path.basename(sys.executable) not in ['ArcGISPro.exe', 'ArcSOC.exe']:
     ts_file = r"C:\Toolworkbench\yuma-range-survey\web_map_configuration\ArcGISPro_Projects\sample_data\SITE9_KTM_17JAN2019.asc"
-    arcpy.AddWarning(f"Running outside of Esri software. Using file {ts_file} for DEBUGGING")
+    arcpy.AddWarning("Running outside of Esri software. Using file {} for DEBUGGING".format(ts_file))
 
-arcpy.AddMessage(f"importing file: {ts_file}")
+arcpy.AddMessage("importing file: {}".format(ts_file))
 file_data = list(line for line in csv.reader(open(ts_file, 'rt'), delimiter='\t') if line)
 
 # Parameter 1: Assignment ID captures an assignment number and includes it with

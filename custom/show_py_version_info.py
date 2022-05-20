@@ -3,6 +3,7 @@ import os, sys, platform, importlib, arcpy
 import subprocess
 
 server_dict = {}
+layer = arcpy.GetParameter(0)
 
 # Print the version number for python
 arcpy.AddMessage('Python version: ' + platform.python_version())
@@ -32,15 +33,31 @@ arcpy.AddMessage('USERNAME: ' + os.environ['USERNAME'])
 server_dict['username'] = os.environ['USERNAME']
 
 # check workspace
-arcpy.env.workspace = R"cmcguirevm.sde"
+arcpy.env.workspace = os.path.dirname(layer)
+desc_ws = arcpy.Describe(arcpy.env.workspace)
+
 server_dict['workspace'] = arcpy.env.workspace
-if os.path.exists(arcpy.env.workspace):
-    server_dict['workspace_type'] = arcpy.Describe(arcpy.env.workspace).workspaceType
+
+if arcpy.Exists(arcpy.env.workspace):
+
+    server_dict['dataElementType'] = desc_ws.dataElementType
+
+    if desc_ws.dataElementType == 'DEWorkspace':
+        server_dict['workspace_type'] = desc_ws.workspaceType
+        fc_count = len(arcpy.ListFeatureClasses())
+
+        if fc_count > 0:
+            server_dict['fc_count'] = fc_count
+            fcs = [fc for fc in arcpy.ListFeatureClasses()]
+            server_dict['fcs'] = fcs
+        else:
+            server_dict['fc_count'] = fc_count
+            server_dict['fcs'] = []
 else:
-    server_dict['workspace_type'] = f"{arcpy.env.workspace} not found."
+    string = "{} not found.".format(arcpy.env.arcpy.env.workspace)
+    arcpy.AddError("Unable to read Workspace input.")
 
 # check layer access
-layer = arcpy.GetParameter(1)
 if layer:
     arcpy.Exists(layer)
     desc = arcpy.Describe(layer)
@@ -49,5 +66,5 @@ if layer:
 # server_dict['layer_path_exists'] = arcpy.Exists(layer)
 
 for line in server_dict.keys():
-    print(f"{line}: {server_dict[line]}")
-arcpy.SetParameter(0,server_dict)
+    print("{}: {}".format(line,server_dict[line]))
+arcpy.SetParameter(1,server_dict)

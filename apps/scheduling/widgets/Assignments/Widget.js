@@ -105,7 +105,7 @@ define([
           var portal = new arcgisPortal.Portal(this.appConfig.portalUrl);
           var params = {
             f: "json",
-            q: "Surveyors",
+            q: "Geodetics Surveyors",
           };
           portal.queryGroups(params).then(
             lang.hitch(this, function (groupsResults) {
@@ -113,7 +113,7 @@ define([
                 arrayUtil.forEach(
                   groupsResults.results,
                   lang.hitch(this, function (group) {
-                    if (group.title === "Surveyors") {
+                    if (group.title === "Geodetics Surveyors") {
                       group.getMembers().then(
                         lang.hitch(this, function (members) {
                           this.surveyors = members.users.concat(members.admins);
